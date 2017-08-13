@@ -16,7 +16,7 @@ const socketMiddleware = (function() {
   const onOpen = (ws, store, userId) => evt => {
     // Send a handshake, or authenticate with remote end
     // Tell the store we're connected
-    store.dispatch(connected())
+    store.dispatch(connected(userId))
     // Tell the server who we are
     socket.send(JSON.stringify({username: userId}))
   }

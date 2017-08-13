@@ -2,8 +2,7 @@ import { take, call, put } from 'redux-saga/effects'
 
 import whatwgFetch from 'utils/fetch'
 
-import { GET_INITIAL_LIST_USERS } from './actions'
-import { setListUsers } from 'app/actions'
+import { setListUsers, GET_INITIAL_LIST_USERS } from 'app/actions'
 
 export function* getSetInitialListUsers() {
   const url = 'http://localhost:4000/users/'

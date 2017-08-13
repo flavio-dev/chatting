@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import App from './App'
-import { getInitialListUsers } from './actions'
+import { getInitialListUsers } from 'app/actions'
 import { getUsers, getNumUsers } from 'app/selectors'
 
 const mapActionCreators = (dispatch) => ({
