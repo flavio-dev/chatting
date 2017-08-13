@@ -56,7 +56,7 @@ wsServer.on('request', function(request) {
 	// we need to know client index to remove them on 'close' event
 	var index = clients.push(connection) - 1;
 
-	console.log((new Date()) + ' Connection accepted. at index ' + index);
+	console.log((new Date()) + ' Connection accepted.');
 
 	// user sent some message
 	connection.on('message', function(message) {
@@ -68,12 +68,17 @@ wsServer.on('request', function(request) {
         userConnectionMap[msgJSON.username] = connection
         users.push(msgJSON.username)
       } else {
-        // broadcast message to all connected clients
-        // COMPLETELY UNTESTED =D
-        users.forEach(user => {
-          const connection = userConnectionMap[user]
+        if (msgJSON.to === 'ALL') {
+          // broadcast message to all connected clients
+          users.forEach(user => {
+            const connection = userConnectionMap[user]
+            connection.sendUTF(message.utf8Data);
+          })
+        } else {
+          // broadcast message only to the user
+          const connection = userConnectionMap[msgJSON.to]
           connection.sendUTF(message.utf8Data);
-        })
+        }
       }
 		}
 	});
