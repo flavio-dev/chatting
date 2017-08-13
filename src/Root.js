@@ -1,24 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
+import { Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import AppContainer from 'routes/app/AppContainer'
 import UserContainer from 'routes/user/UserContainer'
 
-export const Root = ({ store }) => (
+export const Root = ({ store, history }) => (
   <Provider store={store}>
-    <Router>
+    <ConnectedRouter history={history}>
       <Switch>
         <Route exact path='/' component={AppContainer} />
         <Route path='/:userId' component={UserContainer} />
       </Switch>
-    </Router>
+    </ConnectedRouter>
   </Provider>
 )
 
 Root.propTypes = {
-  store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired,
+  history: PropTypes.object
 }
 
 export default Root

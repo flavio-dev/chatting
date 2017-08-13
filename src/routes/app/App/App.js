@@ -9,8 +9,12 @@ class App extends Component {
     super(props)
     this.state = {
       users: [],
-      numUsers: 0
+      numUsers: 0,
+      userId: ''
     }
+
+    this.typing = this.typing.bind(this)
+    this.enterChat = this.enterChat.bind(this)
   }
 
   componentDidMount() {
@@ -22,16 +26,29 @@ class App extends Component {
     this.setState({numUsers: nextProps.numUsers})
   }
 
+  typing(event) {
+    this.setState(
+      {userId: event.target.value}
+    )
+  }
+
+  enterChat() {
+    const slug = this.state.userId.toLowerCase()
+    this.props.redirectToUser(slug)
+  }
+
   render() {
     return (
       <div className={styles.App}>
         <div className={styles.AppHeader}>
           <img src={logo} className={styles.AppLogo} alt='logo' />
-          <h2>Welcome to React</h2>
+          <h2>Welcome {this.state.userId} to Chatting</h2>
         </div>
-        <p className={styles.AppIntro}>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className={styles.AppIntro}>
+          Enter your name:
+          <input type='text' value={this.state.userId} onChange={this.typing} />
+          <div onClick={this.enterChat}>Enter the chatroom</div>
+        </div>
         <p>There are {this.state.numUsers} user(s) online</p>
         {this.state.users.map((user, index) => {
           return (
@@ -48,7 +65,8 @@ class App extends Component {
 App.propTypes = {
   users: PropTypes.array,
   numUsers: PropTypes.number,
-  getInitialListUsers: PropTypes.func
+  getInitialListUsers: PropTypes.func,
+  redirectToUser: PropTypes.func
 }
 
 export default App

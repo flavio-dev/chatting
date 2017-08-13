@@ -3,12 +3,13 @@ import { applyMiddleware, createStore, compose } from 'redux'
 import { makeRootReducer } from './reducers'
 import { rootSaga, sagaMiddleware } from './sagas'
 import socketMiddleware from './socketMiddleware'
+import { routerMiddleware } from 'react-router-redux'
 
 export default (initialState = Immutable.Map(), history) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [sagaMiddleware, socketMiddleware]
+  const middleware = [sagaMiddleware, socketMiddleware, routerMiddleware(history)]
 
   // ======================================================
   // Store Instantiation and HMR Setup
