@@ -51,24 +51,26 @@ class App extends Component {
     let style = this.state.hasTyped ? 'App' : 'AppNotTyped'
     return (
       <div className={styles[style]}>
-        <h2 className={styles.AppTitle}>Welcome to Chatting {this.state.userId}!</h2>
-        <input
-          className={styles.AppInput}
-          type='text'
-          value={this.state.userId}
-          onChange={this.typing}
-          placeholder='Enter your name' />
-        <div className={styles.AppButtonContainer}>
-          <button className={styles.AppButton} onClick={this.enterChat}>Enter the chatroom</button>
+        <div className={styles.AppContent}>
+          <h2 className={styles.AppTitle}>Welcome to Chatting {this.state.userId}!</h2>
+          <input
+            className={styles.AppInput}
+            type='text'
+            value={this.state.userId}
+            onChange={this.typing}
+            placeholder='Enter your name' />
+          <div className={styles.AppButtonContainer}>
+            <button className={styles.AppButton} onClick={this.enterChat}>Enter the chatroom</button>
+          </div>
+          <p className={styles.AppListUsers}>There are currently {this.state.numUsers} user(s) online</p>
+          {this.state.users.map((user, index) => {
+            return (
+              <div className={styles.AppListUser} key={index}>
+                <div className={styles.AppOnline} /><span>{user}</span>
+              </div>
+            )
+          })}
         </div>
-        <p>There are currently {this.state.numUsers} user(s) online</p>
-        {this.state.users.map((user, index) => {
-          return (
-            <div key={index}>
-              {user}
-            </div>
-          )
-        })}
       </div>
     )
   }
