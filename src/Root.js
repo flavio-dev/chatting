@@ -6,14 +6,21 @@ import { Provider } from 'react-redux'
 
 import AppContainer from 'routes/app/AppContainer'
 import UserContainer from 'routes/user/UserContainer'
+import Layout from 'components/Layout'
+
+import 'index.css'
 
 export const Root = ({ store, history }) => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Switch>
-        <Route exact path='/' component={AppContainer} />
-        <Route path='/:userId' component={UserContainer} />
-      </Switch>
+      <div>
+        <Layout>
+          <Switch>
+            <Route exact path='/' component={AppContainer} />
+            <Route path='/:userId' component={UserContainer} />
+          </Switch>
+        </Layout>
+      </div>
     </ConnectedRouter>
   </Provider>
 )

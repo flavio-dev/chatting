@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import logo from './logo.svg'
 import styles from './App.css'
 
 class App extends Component {
@@ -10,7 +9,8 @@ class App extends Component {
     this.state = {
       users: [],
       numUsers: 0,
-      userId: ''
+      userId: '',
+      hasTyped: false
     }
 
     this.typing = this.typing.bind(this)
@@ -30,6 +30,16 @@ class App extends Component {
     this.setState(
       {userId: event.target.value}
     )
+
+    if (event.target.value && event.target.value.length > 0) {
+      this.setState({
+        hasTyped: true
+      })
+    } else {
+      this.setState({
+        hasTyped: false
+      })
+    }
   }
 
   enterChat() {
@@ -38,18 +48,20 @@ class App extends Component {
   }
 
   render() {
+    let style = this.state.hasTyped ? 'App' : 'AppNotTyped'
     return (
-      <div className={styles.App}>
-        <div className={styles.AppHeader}>
-          <img src={logo} className={styles.AppLogo} alt='logo' />
-          <h2>Welcome {this.state.userId} to Chatting</h2>
+      <div className={styles[style]}>
+        <h2 className={styles.AppTitle}>Welcome to Chatting {this.state.userId}!</h2>
+        <input
+          className={styles.AppInput}
+          type='text'
+          value={this.state.userId}
+          onChange={this.typing}
+          placeholder='Enter your name' />
+        <div className={styles.AppButtonContainer}>
+          <button className={styles.AppButton} onClick={this.enterChat}>Enter the chatroom</button>
         </div>
-        <div className={styles.AppIntro}>
-          Enter your name:
-          <input type='text' value={this.state.userId} onChange={this.typing} />
-          <div onClick={this.enterChat}>Enter the chatroom</div>
-        </div>
-        <p>There are {this.state.numUsers} user(s) online</p>
+        <p>There are currently {this.state.numUsers} user(s) online</p>
         {this.state.users.map((user, index) => {
           return (
             <div key={index}>

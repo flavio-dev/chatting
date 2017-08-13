@@ -1,24 +1,80 @@
+@import "globals.scss";
+
 .App {
+  @include transitions(all);
+  background-color: $color-white;
+  color: $color-chocolate;
+  font-size: 30px;
+  padding: 60px;
   text-align: center;
 }
 
-.AppLogo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.AppNotTyped {
+  @extend .App;
+  background-color: $color-chocolate;
+  color: $color-white;
+
+  .AppInput {
+    border: 5px solid $color-white;
+  }
+
+  .AppButton {
+    border: 5px solid $color-blue-sky;
+
+    &:hover {
+      border-color: $color-white;
+    }
+  }
 }
 
-.AppHeader {
-  background-color: #262;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.AppTitle {
+  font-family: $title-font-family;
+  font-size: 40px;
+  margin-bottom: 60px;
+
+  @media #{$medium-and-up} {
+    font-size: 60px;
+    margin-bottom: 40px;
+  }
 }
 
-.AppIntro {
-  font-size: large;
+.AppInput {
+  @include transitions(border);
+  font-family: $title-font-family;
+  background-color: $color-white;
+  border: 5px solid $color-chocolate;
+  border-radius: 5px;
+  color: $color-chocolate;
+  padding: 20px 20px;
+  width: 80%;
+
+  &::placeholder {
+    color: $color-milk-chocolate;
+  }
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.AppButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0;
+
+  @media #{$medium-and-up} {
+    margin: 40px 0;
+  }
+}
+
+.AppButton {
+  @include transitions(all);
+  background-color: $color-blue-sky;
+  border: 5px solid $color-blue-sky;
+  border-radius: 5px;
+  color: $color-white;
+  display: block;
+  font-family: $title-font-family;
+  padding: 20px 20px;
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-blue-sky;
+  }
 }
