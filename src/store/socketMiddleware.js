@@ -5,7 +5,8 @@ import {
   messageReceived,
   SET_CONNECTION,
   SEND_CHAT_MESSAGE,
-  DISCONNECTING
+  DISCONNECTING,
+  newUserLogin
 } from './actions'
 
 const socketMiddleware = (function() {
@@ -29,7 +30,11 @@ const socketMiddleware = (function() {
     // Parse the JSON message received on the websocket
     var msg = JSON.parse(evt.data)
     // Dispatch an action that adds the received message to our state
-    store.dispatch(messageReceived(msg))
+    if (msg.message && msg.message.length) {
+      store.dispatch(messageReceived(msg))
+    } else if (msg.username && msg.username.length) {
+      store.dispatch(newUserLogin(msg))
+    }
   }
 
   return store => next => action => {

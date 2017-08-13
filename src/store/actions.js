@@ -5,6 +5,7 @@ export const CONNECTED = 'CONNECTED'
 export const MESSAGE_RECEIVED = 'MESSAGE_RECEIVED'
 export const SET_CONNECTION = 'SET_CONNECTION'
 export const SEND_CHAT_MESSAGE = 'SEND_CHAT_MESSAGE'
+export const NEW_USER_LOGIN = 'NEW_USER_LOGIN'
 
 export const connected = () => ({
   type: CONNECTED,
@@ -21,13 +22,18 @@ export const disconnected = () => ({
   status: 'disconnected'
 })
 
-export const messageReceived = (msg) => ({
+export const messageReceived = (payload) => ({
   type: MESSAGE_RECEIVED,
   message: {
-    message: msg.message,
-    from: msg.from,
-    to: msg.to
+    message: payload.message,
+    from: payload.from,
+    to: payload.to
   }
+})
+
+export const newUserLogin = (payload) => ({
+  type: NEW_USER_LOGIN,
+  userId: payload.username
 })
 
 export const setConnection = (userId) => {

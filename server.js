@@ -63,8 +63,14 @@ wsServer.on('request', function(request) {
 		if (message.type === 'utf8') {
 			console.log((new Date()) + ' Received Parameters: '+ message.utf8Data);
       var msgJSON = JSON.parse(message.utf8Data)
+
       if (msgJSON.username && msgJSON.username.length) {
         // a username is registering itself
+        users.forEach(user => {
+          // sending to all usrs someone is loggin in
+          const connection = userConnectionMap[user]
+          connection.sendUTF(message.utf8Data);
+        })
         userConnectionMap[msgJSON.username] = connection
         users.push(msgJSON.username)
       } else {
