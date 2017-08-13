@@ -1,8 +1,34 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
-import registerServiceWorker from './registerServiceWorker'
 
-ReactDOM.render(<App />, document.getElementById('root'))
-registerServiceWorker()
+import Root from './Root'
+import createStore from './store'
+
+const initialState = window.___INITIAL_STATE__
+const store = createStore(initialState)
+
+// ========================================================
+// Developer Tools Setup
+// ========================================================
+if (window.devToolsExtension) {
+  window.devToolsExtension.open()
+}
+
+// ========================================================
+// Render Setup
+// ========================================================
+const MOUNT_NODE = document.getElementById('root')
+
+let render = () => {
+  ReactDOM.render(
+    <Root
+      store={store}
+    />,
+    MOUNT_NODE
+  )
+}
+
+// ========================================================
+// Go!
+// ========================================================
+render()
