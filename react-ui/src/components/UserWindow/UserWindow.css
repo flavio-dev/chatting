@@ -37,9 +37,11 @@
       width: 90%; } }
 
 .WindowYou, .WindowThem {
+  align-items: flex-end;
   border-bottom: 1px dotted #00A0CC;
   display: flex; }
   .WindowYou span, .WindowThem span {
+    margin-right: 5px;
     text-transform: capitalize; }
 
 .WindowYou {

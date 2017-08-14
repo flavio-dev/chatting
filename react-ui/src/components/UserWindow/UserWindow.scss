@@ -36,10 +36,12 @@
 }
 
 .WindowYou, .WindowThem {
+  align-items: flex-end;
   border-bottom: 1px dotted $color-blue-sky;
   display: flex;
 
   span {
+    margin-right: 5px;
     text-transform: capitalize;
   }
 }
