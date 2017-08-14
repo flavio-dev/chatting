@@ -10,6 +10,7 @@
 *.vi
 *~
 *.sass-cache
+react-ui/src/**/*.css
 
 # OS or Editor folders
 .DS_Store
