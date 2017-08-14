@@ -38,3 +38,11 @@ $color-white: #F4F9FF;
 @mixin transitions($property, $timing-function: ease) {
     transition: $property .3s $timing-function;
 }
+
+@mixin online() {
+  background-color: $color-online;
+  border-radius: 10px;
+  margin-right: 10px;
+  height: 15px;
+  width: 15px;
+}

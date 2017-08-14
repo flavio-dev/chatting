@@ -20,20 +20,21 @@ class UserWindow extends Component {
   }
 
   sendMessage() {
+    this.props.sendMessage(this.state.textMessage, this.props.you, this.props.to)
     this.setState(
       {textMessage: ''}
     )
-    this.props.sendMessage(this.state.textMessage, this.props.you, 'ALL')
   }
 
   render() {
     return (
       <div className={styles.WindowWrapper}>
-        <h2 className={styles.WindowTitle}>{this.props.title}</h2>
+        <h2 className={styles.WindowTitle}>{this.props.online &&
+          <div className={styles.WindowOnline} />
+        }&nbsp;{this.props.title}</h2>
         <div className={styles.Window}>
           <div className={styles.WindowContent}>
             {this.props.messages.map((message, index) => {
-              console.log('message = ', message)
               if (message.from === this.props.you) {
                 return (
                   <div className={styles.WindowYou} key={index}>
@@ -43,7 +44,7 @@ class UserWindow extends Component {
               } else {
                 return (
                   <div className={styles.WindowThem} key={index}>
-                    <span>{message.from}: </span>{message.message}
+                    <span>{message.from}:&nbsp;</span>{message.message}
                   </div>
                 )
               }
@@ -64,6 +65,7 @@ UserWindow.propTypes = {
   to: PropTypes.string,
   you: PropTypes.string,
   messages: PropTypes.array,
+  online: PropTypes.bool,
   sendMessage: PropTypes.func
 }
 export default UserWindow

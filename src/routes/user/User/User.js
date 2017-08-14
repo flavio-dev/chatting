@@ -10,7 +10,8 @@ class User extends Component {
     super(props)
     this.userId = ''
     this.state = {
-      messages: this.props.messages
+      messages: this.props.messages,
+      users: this.props.users
     }
 
     this.filterMessage = this.filterMessage.bind(this)
@@ -23,15 +24,29 @@ class User extends Component {
 
   componentDidMount() {
     this.props.setConnection(this.userId)
+    this.props.getInitialListUsers()
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({messages: nextProps.messages})
+    if (nextProps.messages) {
+      this.setState({
+        messages: nextProps.messages,
+        users: nextProps.users
+      })
+    }
   }
 
-  filterMessage(to) {
+  filterMessage(user) {
     return this.state.messages.filter(message => {
-      return message.to === to
+      return (message.from === user && message.to === this.userId) ||
+        (message.from === this.userId && message.to === user)
+    })
+  }
+
+  filterMessageAll() {
+    console.log('filterMessageAll = ', this.state.messages)
+    return this.state.messages.filter(message => {
+      return message.to === 'ALL'
     })
   }
 
@@ -42,11 +57,22 @@ class User extends Component {
         <div className={styles.UserBoard}>
           <UserWindow
             title='forum'
-            messages={this.filterMessage('ALL')}
+            messages={this.filterMessageAll()}
             to='ALL'
             you={this.userId}
             sendMessage={this.props.sendMessage}
            />
+          {this.state.users.map((user, index) => {
+            return <UserWindow
+              key={index}
+              title={user}
+              messages={this.filterMessage(user)}
+              to={user}
+              you={this.userId}
+              sendMessage={this.props.sendMessage}
+              online
+            />
+          })}
         </div>
       </div>
     )
@@ -58,11 +84,13 @@ User.propTypes = {
   setUserId: PropTypes.func,
   setConnection: PropTypes.func,
   sendMessage: PropTypes.func,
+  getInitialListUsers: PropTypes.func,
   messages: PropTypes.arrayOf(PropTypes.shape({
     message: PropTypes.string,
     from: PropTypes.string,
     to: PropTypes.string
-  }))
+  })),
+  users: PropTypes.array
 }
 
 export default User

@@ -1,6 +1,8 @@
 import { connect } from 'react-redux'
 
 import { setConnection, sendMessage } from 'store/actions'
+import { getInitialListUsers } from 'app/actions'
+import { getUsers } from 'app/selectors'
 
 import User from './User'
 import { getMessages } from './selectors'
@@ -15,11 +17,15 @@ const mapActionCreators = (dispatch) => ({
   },
   sendMessage: (message, from, to) => {
     dispatch(sendMessage(message, from, to))
+  },
+  getInitialListUsers: () => {
+    dispatch(getInitialListUsers())
   }
 })
 
 const mapStateToProps = (state) => ({
-  messages: getMessages(state)
+  messages: getMessages(state),
+  users: getUsers(state)
 })
 
 export default connect(mapStateToProps, mapActionCreators)(User)

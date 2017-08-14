@@ -1,18 +1,22 @@
 @import "globals.scss";
 
 .WindowWrapper {
-  width: 100%;
-
-  @media #{$medium-and-up} {
-    max-width: 600px;
-    min-width: 500px;
-  }
+  flex: 1 0 400px;
+  margin: 15px;
 }
 
 .WindowTitle {
+  align-items: center;
+  color: $color-chocolate;
+  display: flex;
   font-family: $title-font-family;
   font-size: 30px;
   text-transform: capitalize;
+  margin-left: 10px;
+}
+
+.WindowOnline {
+  @include online();
 }
 
 .Window {

@@ -64,6 +64,7 @@ wsServer.on('request', function(request) {
 			console.log((new Date()) + ' Received Parameters: '+ message.utf8Data);
       var msgJSON = JSON.parse(message.utf8Data)
 
+
       if (msgJSON.username && msgJSON.username.length) {
         // a username is registering itself
         users.forEach(user => {
@@ -81,9 +82,11 @@ wsServer.on('request', function(request) {
             connection.sendUTF(message.utf8Data);
           })
         } else {
-          // broadcast message only to the user
-          const connection = userConnectionMap[msgJSON.to]
-          connection.sendUTF(message.utf8Data);
+          // broadcast message only to the user, and myself
+          const connectionTo = userConnectionMap[msgJSON.to]
+          connectionTo.sendUTF(message.utf8Data);
+          const connectionFrom = userConnectionMap[msgJSON.from]
+          connectionFrom.sendUTF(message.utf8Data);
         }
       }
 		}
