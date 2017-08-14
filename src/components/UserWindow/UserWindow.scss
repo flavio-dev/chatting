@@ -71,8 +71,13 @@
     height: 36;
     margin-bottom: 20px;
     padding: 3%;
-    width: 93%;
-    max-width: 93%;
+    width: 92%;
+    max-width: 92%;
+
+    @media #{$medium-and-up} {
+      width: 93%;
+      max-width: 93%;
+    }
   }
 
   button {
