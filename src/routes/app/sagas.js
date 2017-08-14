@@ -5,7 +5,13 @@ import whatwgFetch from 'utils/fetch'
 import { setListUsers, GET_INITIAL_LIST_USERS } from 'app/actions'
 
 export function* getSetInitialListUsers() {
-  const url = 'http://localhost:4000/users/'
+  let url = '/users/'
+  if (window.location.port.length) {
+    url = 'http://localhost:4000/users/'
+  }
+
+  console.log('getting the list from url ', url);
+
   const list = yield call(whatwgFetch, url)
 
   yield put(setListUsers(list))

@@ -11,7 +11,17 @@ import {
 
 const socketMiddleware = (function() {
   var socket = null
-  var url = 'ws:localhost:4000'
+  var url = ''
+  if (window.location.port.length) {
+    url = 'ws:localhost:4000'
+  } else {
+    var host = window.location.host,
+  		protocol = (window.location.protocol === 'https:') ? 'wss:' : 'ws:';
+
+    url = protocol + host
+  }
+
+  console.log('URL in socketMiddleware = ', url)
 
   const onOpen = (ws, store, userId) => evt => {
     // Send a handshake, or authenticate with remote end
