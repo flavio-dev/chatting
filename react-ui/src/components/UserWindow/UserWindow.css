@@ -1,0 +1,89 @@
+.WindowWrapper {
+  flex: 1 0 200px; }
+  @media only screen and (min-width: 601px) {
+    .WindowWrapper {
+      flex: 1 0 400px;
+      margin: 15px; } }
+
+.WindowTitle {
+  align-items: center;
+  color: #3A2424;
+  display: flex;
+  font-family: "Lobster", Helvetica, sans-serif;
+  font-size: 30px;
+  text-transform: capitalize;
+  margin-left: 10px; }
+
+.WindowOnline {
+  background-color: #95FF87;
+  border-radius: 10px;
+  margin-right: 10px;
+  height: 15px;
+  width: 15px; }
+
+.Window {
+  border: 5px solid #3A2424;
+  border-radius: 5px;
+  color: #0f1121; }
+
+.WindowContent {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  height: 300px;
+  padding: 20px 0; }
+  @media only screen and (min-width: 601px) {
+    .WindowContent {
+      width: 90%; } }
+
+.WindowYou, .WindowThem {
+  border-bottom: 1px dotted #00A0CC;
+  display: flex; }
+  .WindowYou span, .WindowThem span {
+    text-transform: capitalize; }
+
+.WindowYou {
+  justify-content: flex-end;
+  padding: 10px 0 10px 30%; }
+  .WindowYou span {
+    color: #3A2424; }
+
+.WindowThem {
+  padding: 10px 30% 10px 0; }
+  .WindowThem span {
+    color: #B78686; }
+
+.WindowCTA {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  overflow: hidden; }
+  @media only screen and (min-width: 601px) {
+    .WindowCTA {
+      width: 90%; } }
+  .WindowCTA textarea {
+    border: 2px solid #3A2424;
+    border-radius: 5px;
+    height: 36;
+    margin-bottom: 20px;
+    padding: 3%;
+    width: 92%;
+    max-width: 92%; }
+    @media only screen and (min-width: 601px) {
+      .WindowCTA textarea {
+        width: 93%;
+        max-width: 93%; } }
+  .WindowCTA button {
+    transition: all 0.3s ease;
+    background-color: #00A0CC;
+    border: 5px solid #00A0CC;
+    border-radius: 5px;
+    color: #F4F9FF;
+    float: right;
+    font-family: "Lobster", Helvetica, sans-serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding: 5px 15px; }
+    .WindowCTA button:hover {
+      background-color: #F4F9FF;
+      color: #00A0CC; }

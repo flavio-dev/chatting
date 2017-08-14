@@ -1,0 +1,25 @@
+.Header {
+  color: #00A0CC;
+  background-color: #F4F9FF;
+  font-family: "Lobster", Helvetica, sans-serif;
+  border-bottom: 5px solid #B78686; }
+
+.HeaderContent {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  align-items: center;
+  display: flex;
+  height: 80px; }
+  @media only screen and (min-width: 601px) {
+    .HeaderContent {
+      width: 90%; } }
+
+.HeaderLogo {
+  height: 56px;
+  transform: rotate(72deg);
+  width: 56px; }
+
+.HeaderTitle {
+  font-size: 40px;
+  margin-left: 30px; }
