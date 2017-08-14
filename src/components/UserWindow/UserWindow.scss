@@ -1,8 +1,12 @@
 @import "globals.scss";
 
 .WindowWrapper {
-  flex: 1 0 400px;
-  margin: 15px;
+  flex: 1 0 200px;
+
+  @media #{$medium-and-up} {
+    flex: 1 0 400px;
+    margin: 15px;
+  }
 }
 
 .WindowTitle {

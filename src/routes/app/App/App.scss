@@ -5,8 +5,12 @@
   background-color: $color-white;
   color: $color-chocolate;
   font-size: 30px;
-  padding: 60px 0;
+  padding: 40px 0;
   text-align: center;
+
+  @media #{$medium-and-up} {
+    padding: 60px 0;
+  }
 }
 
 .AppContent {

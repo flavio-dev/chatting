@@ -2,6 +2,11 @@
 
 .UserContent {
   @include default-wrapper-width();
+  padding: 40px 0;
+
+  @media #{$medium-and-up} {
+    padding: 60px 0;
+  }
 }
 
 .UserTitle {

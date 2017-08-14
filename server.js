@@ -11,8 +11,6 @@ var webSocketServer = require('websocket').server;
 var http = require('http');
 var https = require('https');
 
-// list of currently connected clients (users)
-var clients = [];
 // map of user to connection (useful for when deconnection)
 var userConnectionMap = {};
 // list of user names
@@ -54,7 +52,6 @@ wsServer.on('request', function(request) {
 
 	var connection = request.accept(null, request.origin);
 	// we need to know client index to remove them on 'close' event
-	var index = clients.push(connection) - 1;
 
 	console.log((new Date()) + ' Connection accepted.');
 

@@ -15,6 +15,7 @@ class User extends Component {
     }
 
     this.filterMessage = this.filterMessage.bind(this)
+    this.filterMessageAll = this.filterMessageAll.bind(this)
   }
 
   componentWillMount() {
@@ -44,7 +45,6 @@ class User extends Component {
   }
 
   filterMessageAll() {
-    console.log('filterMessageAll = ', this.state.messages)
     return this.state.messages.filter(message => {
       return message.to === 'ALL'
     })
