@@ -1,0 +1,87 @@
+@import "globals.scss";
+
+.WindowWrapper {
+  width: 100%;
+
+  @media #{$medium-and-up} {
+    max-width: 600px;
+    min-width: 500px;
+  }
+}
+
+.WindowTitle {
+  font-family: $title-font-family;
+  font-size: 30px;
+  text-transform: capitalize;
+}
+
+.Window {
+  border: 5px solid $color-chocolate;
+  border-radius: 5px;
+  color: $color-quiet-black;
+}
+
+.WindowContent {
+  @include default-wrapper-width();
+  height: 300px;
+  padding: 20px 0;
+}
+
+.WindowYou, .WindowThem {
+  border-bottom: 1px dotted $color-blue-sky;
+  display: flex;
+
+  span {
+    text-transform: capitalize;
+  }
+}
+
+.WindowYou {
+  justify-content: flex-end;
+  padding: 10px 0 10px 30%;
+
+  span {
+    color: $color-chocolate;
+  }
+}
+
+.WindowThem {
+  padding: 10px 30% 10px 0;
+
+  span {
+    color: $color-milk-chocolate;
+  }
+}
+
+.WindowCTA {
+  @include default-wrapper-width();
+  overflow: hidden;
+
+  textarea {
+    border: 2px solid $color-chocolate;
+    border-radius: 5px;
+    height: 36;
+    margin-bottom: 20px;
+    padding: 3%;
+    width: 93%;
+    max-width: 93%;
+  }
+
+  button {
+    @include transitions(all);
+    background-color: $color-blue-sky;
+    border: 5px solid $color-blue-sky;
+    border-radius: 5px;
+    color: $color-white;
+    float: right;
+    font-family: $title-font-family;
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding: 5px 15px;
+
+    &:hover {
+      background-color: $color-white;
+      color: $color-blue-sky;
+    }
+  }
+}

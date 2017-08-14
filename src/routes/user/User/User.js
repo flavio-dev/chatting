@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import UserWindow from 'components/UserWindow'
+
+import styles from './User.css'
+
 class User extends Component {
   constructor(props) {
     super(props)
     this.userId = ''
     this.state = {
-      textMessage: '',
       messages: this.props.messages
     }
-    this.typing = this.typing.bind(this)
-    this.sendMessage = this.sendMessage.bind(this)
+
+    this.filterMessage = this.filterMessage.bind(this)
   }
 
   componentWillMount() {
@@ -26,31 +29,25 @@ class User extends Component {
     this.setState({messages: nextProps.messages})
   }
 
-  typing(event) {
-    this.setState(
-      {textMessage: event.target.value}
-    )
-  }
-
-  sendMessage() {
-    this.props.sendMessage(this.state.textMessage, this.userId, 'ALL')
+  filterMessage(to) {
+    return this.state.messages.filter(message => {
+      return message.to === to
+    })
   }
 
   render() {
     return (
-      <div>
-        <span>hello {this.userId}</span>
-        <input type='text' value={this.state.textMessage} onChange={this.typing} />
-        <div onClick={this.sendMessage}>SEND MESSAGE</div>
-
-        <div>Displaying messages:</div>
-        {this.state.messages.map((message, index) => {
-          return (
-            <div key={index}>
-              {message.message} sent by {message.from} to {message.to}
-            </div>
-          )
-        })}
+      <div className={styles.UserContent}>
+        <h2 className={styles.UserTitle}>Hello {this.userId}</h2>
+        <div className={styles.UserBoard}>
+          <UserWindow
+            title='forum'
+            messages={this.filterMessage('ALL')}
+            to='ALL'
+            you={this.userId}
+            sendMessage={this.props.sendMessage}
+           />
+        </div>
       </div>
     )
   }
@@ -61,7 +58,11 @@ User.propTypes = {
   setUserId: PropTypes.func,
   setConnection: PropTypes.func,
   sendMessage: PropTypes.func,
-  messages: PropTypes.array
+  messages: PropTypes.arrayOf(PropTypes.shape({
+    message: PropTypes.string,
+    from: PropTypes.string,
+    to: PropTypes.string
+  }))
 }
 
 export default User

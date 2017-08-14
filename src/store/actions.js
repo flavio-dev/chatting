@@ -45,6 +45,7 @@ export const setConnection = (userId) => {
 }
 
 export const sendMessage = (message, from, to) => {
+  console.log('from = ', from)
   return {
     type: SEND_CHAT_MESSAGE,
     message,

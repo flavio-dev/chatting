@@ -3,14 +3,10 @@ import PropTypes from 'prop-types'
 
 import Header from 'components/Header'
 
-import styles from './Layout.css'
-
 export const Layout = ({ children }) => (
-  <div className={styles.Layout}>
+  <div>
     <Header />
-    <div className={styles.LayoutContent}>
-      {children}
-    </div>
+    {children}
   </div>
 )
 
