@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with a message from me 1`] = `
+<div
+  className={undefined}
+>
+  <h2
+    className={undefined}
+  >
+     
+    title
+  </h2>
+  <div
+    className={undefined}
+  >
+    <div
+      className={undefined}
+    >
+      <div
+        className={undefined}
+      >
+        <span>
+          you: 
+        </span>
+        the message
+      </div>
+    </div>
+    <div
+      className={undefined}
+    >
+      <textarea
+        onChange={[Function]}
+        value=""
+      />
+      <button
+        onClick={[Function]}
+      >
+        Send
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with a message from someone 1`] = `
+<div
+  className={undefined}
+>
+  <h2
+    className={undefined}
+  >
+     
+    title
+  </h2>
+  <div
+    className={undefined}
+  >
+    <div
+      className={undefined}
+    >
+      <div
+        className={undefined}
+      >
+        <span>
+          someone
+          : 
+        </span>
+        the message two
+      </div>
+    </div>
+    <div
+      className={undefined}
+    >
+      <textarea
+        onChange={[Function]}
+        value=""
+      />
+      <button
+        onClick={[Function]}
+      >
+        Send
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with no message 1`] = `
+<div
+  className={undefined}
+>
+  <h2
+    className={undefined}
+  >
+     
+    title
+  </h2>
+  <div
+    className={undefined}
+  >
+    <div
+      className={undefined}
+    />
+    <div
+      className={undefined}
+    >
+      <textarea
+        onChange={[Function]}
+        value=""
+      />
+      <button
+        onClick={[Function]}
+      >
+        Send
+      </button>
+    </div>
+  </div>
+</div>
+`;
