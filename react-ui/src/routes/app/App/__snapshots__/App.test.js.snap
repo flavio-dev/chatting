@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`changes the class when starting to type 1`] = `
+<div
+  className={undefined}
+>
+  <div
+    className={undefined}
+  >
+    <h2
+      className={undefined}
+    >
+      Welcome to Chatting 
+      
+      !
+    </h2>
+    <input
+      className={undefined}
+      onChange={[Function]}
+      placeholder="Enter your name"
+      type="text"
+      value=""
+    />
+    <div
+      className={undefined}
+    >
+      <button
+        className={undefined}
+        onClick={[Function]}
+      >
+        Enter the chatroom
+      </button>
+    </div>
+    <p
+      className={undefined}
+    >
+      There are currently 
+      0
+       user(s) online
+    </p>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with empty list of users 1`] = `
+<div
+  className={undefined}
+>
+  <div
+    className={undefined}
+  >
+    <h2
+      className={undefined}
+    >
+      Welcome to Chatting 
+      
+      !
+    </h2>
+    <input
+      className={undefined}
+      onChange={[Function]}
+      placeholder="Enter your name"
+      type="text"
+      value=""
+    />
+    <div
+      className={undefined}
+    >
+      <button
+        className={undefined}
+        onClick={[Function]}
+      >
+        Enter the chatroom
+      </button>
+    </div>
+    <p
+      className={undefined}
+    >
+      There are currently 
+      0
+       user(s) online
+    </p>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with some users already connected 1`] = `
+<div
+  className={undefined}
+>
+  <div
+    className={undefined}
+  >
+    <h2
+      className={undefined}
+    >
+      Welcome to Chatting 
+      
+      !
+    </h2>
+    <input
+      className={undefined}
+      onChange={[Function]}
+      placeholder="Enter your name"
+      type="text"
+      value=""
+    />
+    <div
+      className={undefined}
+    >
+      <button
+        className={undefined}
+        onClick={[Function]}
+      >
+        Enter the chatroom
+      </button>
+    </div>
+    <p
+      className={undefined}
+    >
+      There are currently 
+      0
+       user(s) online
+    </p>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with some users already connected 2`] = `
+<div
+  className={undefined}
+>
+  <div
+    className={undefined}
+  >
+    <h2
+      className={undefined}
+    >
+      Welcome to Chatting 
+      
+      !
+    </h2>
+    <input
+      className={undefined}
+      onChange={[Function]}
+      placeholder="Enter your name"
+      type="text"
+      value=""
+    />
+    <div
+      className={undefined}
+    >
+      <button
+        className={undefined}
+        onClick={[Function]}
+      >
+        Enter the chatroom
+      </button>
+    </div>
+    <p
+      className={undefined}
+    >
+      There are currently 
+      0
+       user(s) online
+    </p>
+  </div>
+</div>
+`;
