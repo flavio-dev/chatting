@@ -10,8 +10,6 @@ export function* getSetInitialListUsers() {
     url = 'http://localhost:4000/users/'
   }
 
-  console.log('getting the list from url ', url);
-
   const list = yield call(whatwgFetch, url)
 
   yield put(setListUsers(list))

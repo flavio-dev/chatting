@@ -6,7 +6,7 @@ const initialState = Immutable.List()
 export const listUsersReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_LIST_USERS:
-      return Immutable.fromJS(action.listUsersReducer)
+      return Immutable.fromJS(action.listUsers)
     case NEW_USER_LOGIN:
       return state.push(action.userId)
     default:
