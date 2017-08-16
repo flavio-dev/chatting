@@ -3,7 +3,7 @@ import { push } from 'react-router-redux'
 
 import App from './App'
 import { getInitialListUsers } from 'app/actions'
-import { getUsers, getNumUsers } from 'app/selectors'
+import { getUsersJS, getNumUsers } from 'app/selectors'
 
 const mapActionCreators = (dispatch) => ({
   getInitialListUsers: () => {
@@ -15,7 +15,7 @@ const mapActionCreators = (dispatch) => ({
 })
 
 const mapStateToProps = (state) => ({
-  users: getUsers(state),
+  users: getUsersJS(state),
   numUsers: getNumUsers(state)
 })
 

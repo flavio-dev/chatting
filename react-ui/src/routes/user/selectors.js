@@ -1,16 +1,27 @@
-import { getUsers } from 'app/selectors'
+import { createSelector } from 'reselect'
+import { getUsersJS } from 'app/selectors'
 
-const getUserId = state => {
-  return state.get('userReducers').get('userId')
-}
+const getUser = state => state.get('userReducers')
 
-export const getUsersICanInteractTo = state => {
-  const userId = getUserId(state)
-  return getUsers(state).filter((user) => {
+const getUserId = createSelector(
+  [getUser],
+  user => user.get('userId')
+)
+
+export const getUsersICanInteractTo = createSelector(
+  [
+    getUserId,
+    getUsersJS
+  ],
+  (
+    userId,
+    users
+  ) => users.filter((user) => {
     return user !== userId
   })
-}
+)
 
-export const getMessages = state => {
-  return state.get('userReducers').get('userMessages').toJS()
-}
+export const getMessagesJS = createSelector(
+  [getUser],
+  user => user.get('userMessages').toJS()
+)

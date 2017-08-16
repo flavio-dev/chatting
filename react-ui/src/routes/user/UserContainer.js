@@ -4,7 +4,7 @@ import { setConnection, sendMessage } from 'store/actions'
 import { getInitialListUsers } from 'app/actions'
 
 import User from './User'
-import { getMessages, getUsersICanInteractTo } from './selectors'
+import { getMessagesJS, getUsersICanInteractTo } from './selectors'
 import { setUserId } from './actions'
 
 const mapActionCreators = (dispatch) => ({
@@ -23,7 +23,7 @@ const mapActionCreators = (dispatch) => ({
 })
 
 const mapStateToProps = (state) => ({
-  messages: getMessages(state),
+  messages: getMessagesJS(state),
   users: getUsersICanInteractTo(state)
 })
 
