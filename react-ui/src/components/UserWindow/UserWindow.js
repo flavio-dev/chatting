@@ -53,7 +53,7 @@ class UserWindow extends Component {
             </div>
           </div>
           <div className={styles.WindowCTA}>
-            <textarea value={this.state.textMessage} onChange={this.typing} />
+            <textarea value={this.state.textMessage} onChange={this.typing} placeholder='Type a message...' />
             <button onClick={this.sendMessage}>Send</button>
           </div>
         </div>

@@ -3,18 +3,18 @@
 exports[`renders correctly 1`] = `
 <div>
   <div
-    className={undefined}
+    className="Header"
   >
     <div
-      className={undefined}
+      className="HeaderContent"
     >
       <img
         alt="logo"
-        className={undefined}
+        className="HeaderLogo"
         src="logo.png"
       />
       <div
-        className={undefined}
+        className="HeaderTitle"
       >
         Chatting
       </div>

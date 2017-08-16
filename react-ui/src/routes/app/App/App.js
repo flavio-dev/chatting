@@ -9,8 +9,7 @@ class App extends Component {
     this.state = {
       users: [],
       numUsers: 0,
-      userId: '',
-      hasTyped: false
+      userId: ''
     }
 
     this.typing = this.typing.bind(this)
@@ -30,16 +29,6 @@ class App extends Component {
     this.setState(
       {userId: event.target.value}
     )
-
-    if (event.target.value && event.target.value.length > 0) {
-      this.setState({
-        hasTyped: true
-      })
-    } else {
-      this.setState({
-        hasTyped: false
-      })
-    }
   }
 
   enterChat() {
@@ -48,9 +37,11 @@ class App extends Component {
   }
 
   render() {
-    let style = this.state.hasTyped ? 'App' : 'AppNotTyped'
+    const styleTyped = (this.state.userId.length)
+      ? 'App'
+      : 'AppNotTyped'
     return (
-      <div className={styles[style]}>
+      <div className={styles[styleTyped]}>
         <div className={styles.AppContent}>
           <h2 className={styles.AppTitle}>Welcome to Chatting {this.state.userId}!</h2>
           <input

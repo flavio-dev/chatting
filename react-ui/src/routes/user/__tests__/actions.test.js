@@ -1,4 +1,4 @@
-import * as actions from './actions'
+import * as actions from '../actions'
 
 describe('action setUserId', () => {
   it('should create an action to set a user id', () => {

@@ -2,7 +2,7 @@ import { call, put, take } from 'redux-saga/effects';
 import { testSaga } from 'redux-saga-test-plan';
 
 import { setListUsers, GET_INITIAL_LIST_USERS } from 'app/actions'
-import { getSetInitialListUsers, watchGetInitialListUsers } from './sagas'
+import { getSetInitialListUsers, watchGetInitialListUsers } from '../sagas'
 import whatwgFetch from 'utils/fetch'
 
 describe('Testing getSetInitialListUsers', () => {

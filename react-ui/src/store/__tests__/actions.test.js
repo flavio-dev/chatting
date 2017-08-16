@@ -1,4 +1,4 @@
-import * as actions from './actions'
+import * as actions from '../actions'
 
 describe('action messageReceived', () => {
   it('should create an action to describe a received message', () => {

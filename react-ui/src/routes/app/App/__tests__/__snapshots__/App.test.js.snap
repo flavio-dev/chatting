@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing App.js renders correctly with empty list of users 1`] = `
+<div
+  className="AppNotTyped"
+>
+  <div
+    className="AppContent"
+  >
+    <h2
+      className="AppTitle"
+    >
+      Welcome to Chatting 
+      
+      !
+    </h2>
+    <input
+      className="AppInput"
+      onChange={[Function]}
+      placeholder="Enter your name"
+      type="text"
+      value=""
+    />
+    <div
+      className="AppButtonContainer"
+    >
+      <button
+        className="AppButton"
+        onClick={[Function]}
+      >
+        Enter the chatroom
+      </button>
+    </div>
+    <p
+      className="AppListUsers"
+    >
+      There are currently 
+      0
+       user(s) online
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Testing App.js renders correctly with some users already connected 1`] = `
+<div
+  className="AppNotTyped"
+>
+  <div
+    className="AppContent"
+  >
+    <h2
+      className="AppTitle"
+    >
+      Welcome to Chatting 
+      
+      !
+    </h2>
+    <input
+      className="AppInput"
+      onChange={[Function]}
+      placeholder="Enter your name"
+      type="text"
+      value=""
+    />
+    <div
+      className="AppButtonContainer"
+    >
+      <button
+        className="AppButton"
+        onClick={[Function]}
+      >
+        Enter the chatroom
+      </button>
+    </div>
+    <p
+      className="AppListUsers"
+    >
+      There are currently 
+      0
+       user(s) online
+    </p>
+  </div>
+</div>
+`;
