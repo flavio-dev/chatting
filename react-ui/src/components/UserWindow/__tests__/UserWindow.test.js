@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
-import React from 'react';
-import UserWindow from '../UserWindow';
-import renderer from 'react-test-renderer';
+import React from 'react'
+import UserWindow from '../UserWindow'
+import renderer from 'react-test-renderer'
 
 describe('Testing UserWindow.js', () => {
   it('renders correctly with no message', () => {
@@ -14,9 +14,9 @@ describe('Testing UserWindow.js', () => {
         you='me'
         messages={messages}
       />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 
   it('renders correctly with a message from me', () => {
     const messages = [
@@ -33,9 +33,9 @@ describe('Testing UserWindow.js', () => {
         you='me'
         messages={messages}
       />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 
   it('renders correctly with a message from someone', () => {
     const messages = [
@@ -52,7 +52,7 @@ describe('Testing UserWindow.js', () => {
         you='me'
         messages={messages}
       />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-});
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+})

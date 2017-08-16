@@ -1,5 +1,5 @@
-import { call, put, take } from 'redux-saga/effects';
-import { testSaga } from 'redux-saga-test-plan';
+import { call, put, take } from 'redux-saga/effects'
+import { testSaga } from 'redux-saga-test-plan'
 
 import { setListUsers, GET_INITIAL_LIST_USERS } from 'app/actions'
 import { getSetInitialListUsers, watchGetInitialListUsers } from '../sagas'
