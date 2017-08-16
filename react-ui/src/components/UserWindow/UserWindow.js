@@ -33,22 +33,24 @@ class UserWindow extends Component {
           <div className={styles.WindowOnline} />
         }&nbsp;{this.props.title}</h2>
         <div className={styles.Window}>
-          <div className={styles.WindowContent}>
-            {this.props.messages.map((message, index) => {
-              if (message.from === this.props.you) {
-                return (
-                  <div className={styles.WindowYou} key={index}>
-                    <span>you:&nbsp;</span>{message.message}
-                  </div>
-                )
-              } else {
-                return (
-                  <div className={styles.WindowThem} key={index}>
-                    <span>{message.from}:&nbsp;</span>{message.message}
-                  </div>
-                )
-              }
-            })}
+          <div className={styles.WindowContentWrapper}>
+            <div className={styles.WindowContent}>
+              {this.props.messages.map((message, index) => {
+                if (message.from === this.props.you) {
+                  return (
+                    <div className={styles.WindowYou} key={index}>
+                      <span>you:&nbsp;</span>{message.message}
+                    </div>
+                  )
+                } else {
+                  return (
+                    <div className={styles.WindowThem} key={index}>
+                      <span>{message.from}:&nbsp;</span>{message.message}
+                    </div>
+                  )
+                }
+              })}
+            </div>
           </div>
           <div className={styles.WindowCTA}>
             <textarea value={this.state.textMessage} onChange={this.typing} />

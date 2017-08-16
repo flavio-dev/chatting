@@ -2,6 +2,7 @@
 
 .WindowWrapper {
   flex: 1 0 200px;
+  margin-bottom: 40px;
 
   @media #{$medium-and-up} {
     flex: 1 0 400px;
@@ -29,26 +30,36 @@
   color: $color-quiet-black;
 }
 
+.WindowContentWrapper {
+  margin: 20px 0;
+  overflow-y: scroll;
+}
+
 .WindowContent {
   @include default-wrapper-width();
   height: 300px;
-  padding: 20px 0;
 }
 
 .WindowYou, .WindowThem {
   align-items: flex-end;
   border-bottom: 1px dotted $color-blue-sky;
+  border-radius: 5px;
   display: flex;
+  padding: 5px;
 
   span {
     margin-right: 5px;
     text-transform: capitalize;
   }
+
+  @media #{$medium-and-up} {
+    padding: 10px;
+  }
 }
 
 .WindowYou {
-  justify-content: flex-end;
-  padding: 10px 0 10px 30%;
+  background-color: $color-chat-you;
+  margin: 10px 0 10px 30%;
 
   span {
     color: $color-chocolate;
@@ -56,7 +67,8 @@
 }
 
 .WindowThem {
-  padding: 10px 30% 10px 0;
+  background-color: $color-chat-them;
+  margin: 10px 30% 10px 0;
 
   span {
     color: $color-milk-chocolate;
@@ -70,15 +82,14 @@
   textarea {
     border: 2px solid $color-chocolate;
     border-radius: 5px;
-    height: 36;
+    height: 36px;
     margin-bottom: 20px;
     padding: 3%;
+    resize: none;
     width: 92%;
-    max-width: 92%;
 
     @media #{$medium-and-up} {
       width: 93%;
-      max-width: 93%;
     }
   }
 
