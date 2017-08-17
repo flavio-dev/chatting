@@ -7,11 +7,25 @@ const middlewares = [socketMiddleware]
 const mockStore = configureStore(middlewares)
 
 describe('socketMiddleware test suite', () => {
+  let initialState
+  let store
+  let mockServer
+
+  beforeEach(() => {
+    initialState = {}
+    store = mockStore(initialState)
+  })
+
+  beforeAll(() => {
+    mockServer = new Server('ws://localhost:4000')
+  })
+
+  afterAll((done) => {
+    mockServer.stop(done)
+  })
+
   it('should dispatch connecting when SET_CONNECTION action is triggered', (done) => {
     // Initialize mockstore with empty state
-    const initialState = {}
-    const store = mockStore(initialState)
-    const mockServer = new Server('ws://localhost:4000')
     const ws = store.dispatch(setConnection('userId'))
 
     const listeners = ws.listeners
@@ -22,31 +36,32 @@ describe('socketMiddleware test suite', () => {
     const actions = store.getActions()
     const expectedPayload = connecting()
     expect(actions).toEqual([expectedPayload])
-
-    mockServer.stop(done)
+    done();
+    // mockServer.stop(done)
   })
 
   it('should dispatch disconnected when DISCONNECTING action is triggered', (done) => {
     // Initialize mockstore with empty state
-    const initialState = {}
-    const store = mockStore(initialState)
-    const mockServer = new Server('ws://localhost:4000')
+    // const initialState = {}
+    // const store = mockStore(initialState)
+    // const mockServer = new Server('ws://localhost:4000')
 
     const ws = store.dispatch(disconnecting())
 
     const actions = store.getActions()
-    const expectedPayload = disconnected()
+    const expectedPayload = disconnected('You are logging out...')
     expect(actions).toEqual([expectedPayload])
     expect(ws).toBe(null)
+    done();
 
-    mockServer.stop(done)
+    // mockServer.stop(done)
   })
 
   it('should send a message when SEND_CHAT_MESSAGE action is triggered', (done) => {
     // Initialize mockstore with empty state
-    const initialState = {}
-    const store = mockStore(initialState)
-    const mockServer = new Server('ws://localhost:4000')
+    // const initialState = {}
+    // const store = mockStore(initialState)
+    // const mockServer = new Server('ws://localhost:4000')
     mockServer.on('message', () => {
       console.log('I would like to receive here the socket.send result');
     })
@@ -54,6 +69,7 @@ describe('socketMiddleware test suite', () => {
     store.dispatch(setConnection('userId'))
 
     store.dispatch(sendMessage())
-    mockServer.stop(done)
+    done();
+    // mockServer.stop(done)
   })
 })
