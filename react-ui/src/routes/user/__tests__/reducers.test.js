@@ -1,4 +1,5 @@
 import Immutable from 'immutable'
+
 import { MESSAGE_RECEIVED } from 'store/actions'
 import userIdReducer from '../reducers/userId'
 import userMessagesReducer from '../reducers/userMessages'

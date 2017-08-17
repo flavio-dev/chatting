@@ -8,7 +8,7 @@ const getUserId = createSelector(
   user => user.get('userId')
 )
 
-export const getUsersICanInteractTo = createSelector(
+export const getUsersICanInteractWith = createSelector(
   [
     getUserId,
     getUsersJS

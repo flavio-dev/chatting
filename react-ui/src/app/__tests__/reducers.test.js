@@ -16,7 +16,7 @@ describe('reducers at app level', () => {
     const expectedStateSetListUsers = Immutable.List(['userId'])
     const stateSetListUsers = listUsersReducer(state, {
       type: SET_LIST_USERS,
-      listUsersReducer: ['userId']
+      listUsers: ['userId']
     })
 
     expect(stateSetListUsers).toEqual(expectedStateSetListUsers)
