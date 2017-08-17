@@ -26,7 +26,7 @@ app.ws('/', function(ws, req) {
     const msgJSON = JSON.parse(msgPassed)
 		console.log((new Date()) + ' Received Parameters: '+ msgPassed);
 
-    if (msgJSON.username && msgJSON.username.length) {
+    if (msgJSON.username && msgJSON.username.length && users.indexOf(msgJSON.username) === -1) {
       // a username is registering itself
       // sending to all usrs someone is loggin in
       users.forEach(user => {

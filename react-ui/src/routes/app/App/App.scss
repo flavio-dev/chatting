@@ -72,19 +72,9 @@
 }
 
 .AppButton {
-  @include transitions(all);
-  background-color: $color-blue-sky;
-  border: 5px solid $color-blue-sky;
-  border-radius: 5px;
-  color: $color-white;
-  display: block;
-  font-family: $title-font-family;
+  font-size: 30px;
+  margin-bottom: 20px;
   padding: 20px;
-
-  &:hover {
-    background-color: $color-white;
-    color: $color-blue-sky;
-  }
 }
 
 .AppListUsers {

@@ -76,6 +76,7 @@
 
 .WindowCTA {
   @include default-wrapper-width();
+  margin-bottom: 20px;
   overflow: hidden;
 
   textarea {
@@ -89,24 +90,6 @@
 
     @media #{$medium-and-up} {
       width: 93%;
-    }
-  }
-
-  button {
-    @include transitions(all);
-    background-color: $color-blue-sky;
-    border: 5px solid $color-blue-sky;
-    border-radius: 5px;
-    color: $color-white;
-    float: right;
-    font-family: $title-font-family;
-    font-size: 20px;
-    margin-bottom: 20px;
-    padding: 5px 15px;
-
-    &:hover {
-      background-color: $color-white;
-      color: $color-blue-sky;
     }
   }
 }

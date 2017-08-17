@@ -27,6 +27,7 @@ exports[`Testing UserWindow.js renders correctly with a message from me 1`] = `
           </span>
           the message
         </div>
+        <div />
       </div>
     </div>
     <div
@@ -75,6 +76,7 @@ exports[`Testing UserWindow.js renders correctly with a message from someone 1`]
           </span>
           the message two
         </div>
+        <div />
       </div>
     </div>
     <div
@@ -113,7 +115,9 @@ exports[`Testing UserWindow.js renders correctly with no message 1`] = `
     >
       <div
         className="WindowContent"
-      />
+      >
+        <div />
+      </div>
     </div>
     <div
       className="WindowCTA"

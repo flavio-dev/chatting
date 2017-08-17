@@ -39,5 +39,28 @@ body {
 }
 
 button {
+  @include transitions(all);
+  background-color: $color-blue-sky;
+  border: 5px solid $color-blue-sky;
+  border-radius: 5px;
+  color: $color-white;
   cursor: pointer;
+  float: right;
+  font-family: $title-font-family;
+  font-size: 20px;
+  padding: 5px 15px;
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-blue-sky;
+  }
+}
+
+a {
+  color: $color-blue-sky;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

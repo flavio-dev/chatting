@@ -9,8 +9,17 @@ class UserWindow extends Component {
     this.state = {
       textMessage: ''
     }
+    this.messagesEnd = {}
     this.typing = this.typing.bind(this)
     this.sendMessage = this.sendMessage.bind(this)
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
   }
 
   typing(event) {
@@ -50,6 +59,7 @@ class UserWindow extends Component {
                   )
                 }
               })}
+              <div ref={(el) => { this.messagesEnd = el; }}></div>
             </div>
           </div>
           <div className={styles.WindowCTA}>

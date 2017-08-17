@@ -1,4 +1,5 @@
 import { take, call, put } from 'redux-saga/effects'
+import { notify } from 'react-notify-toast';
 
 import whatwgFetch from 'utils/fetch'
 
@@ -10,9 +11,12 @@ export function* getSetInitialListUsers() {
     url = 'http://localhost:4000/users/'
   }
 
-  const list = yield call(whatwgFetch, url)
-
-  yield put(setListUsers(list))
+  try {
+    const list = yield call(whatwgFetch, url)
+    yield put(setListUsers(list))
+  } catch(error) {
+    notify.show('Awwwww so sorry: ' + error.message, 'error', 5000)
+  }
 }
 
 export function* watchGetInitialListUsers() {

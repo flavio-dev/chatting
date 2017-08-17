@@ -12,6 +12,8 @@ class App extends Component {
       userId: ''
     }
 
+    this.interval = null
+
     this.typing = this.typing.bind(this)
     this.enterChat = this.enterChat.bind(this)
   }
@@ -19,6 +21,10 @@ class App extends Component {
   componentDidMount() {
     this.props.getInitialListUsers()
     this.startPolling()
+  }
+
+  componentWillUnmount() {
+    this.clearPolling()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,7 +44,11 @@ class App extends Component {
   }
 
   startPolling() {
-    setInterval(() => this.props.getInitialListUsers(), 5000);
+    this.interval = setInterval(() => this.props.getInitialListUsers(), 5000);
+  }
+
+  clearPolling() {
+    clearInterval(this.interval)
   }
 
   render() {

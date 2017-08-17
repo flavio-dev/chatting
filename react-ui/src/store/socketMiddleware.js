@@ -1,3 +1,5 @@
+import { notify } from 'react-notify-toast';
+
 import {
   connected,
   connecting,
@@ -6,7 +8,9 @@ import {
   SET_CONNECTION,
   SEND_CHAT_MESSAGE,
   DISCONNECTING,
-  newUserLogin
+  newUserLogin,
+  DISCONNECTED,
+  CONNECTED
 } from './actions'
 
 const socketMiddleware = (function() {
@@ -70,12 +74,19 @@ const socketMiddleware = (function() {
         }
         socket = null
 
-        // Set our state to disconnected
         store.dispatch(disconnected())
         return socket
 
       case SEND_CHAT_MESSAGE:
         socket.send(JSON.stringify(action))
+        return true
+
+      case DISCONNECTED:
+        notify.show('You just got disconnected...', 'error', 5000)
+        return true
+
+      case CONNECTED:
+        notify.show('You are connected', 'success', 5000)
         return true
 
       // This action is irrelevant to us, pass it on to the next middleware
