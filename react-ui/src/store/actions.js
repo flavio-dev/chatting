@@ -19,9 +19,10 @@ export const connecting = () => ({
   status: 'connecting'
 })
 
-export const disconnecting = () => ({
+export const disconnecting = (userId) => ({
   type: DISCONNECTING,
-  status: 'disconnecting'
+  status: 'disconnecting',
+  userId
 })
 
 export const disconnected = (message) => ({

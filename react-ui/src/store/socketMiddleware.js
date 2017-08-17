@@ -1,7 +1,10 @@
+import { push } from 'react-router-redux'
+
 import {
   connected,
   connecting,
   disconnected,
+  disconnecting,
   messageReceived,
   SET_CONNECTION,
   SEND_CHAT_MESSAGE,
@@ -42,6 +45,8 @@ const socketMiddleware = (function() {
       store.dispatch(messageReceived(msg))
     } else if (msg.username && msg.username.length) {
       store.dispatch(newUserLogin(msg, 'Hey, ' + msg.username + ' just arrived online'))
+    } else if (msg.action && msg.action === 'disconnecting') {
+      store.dispatch(disconnecting())
     }
   }
 
@@ -71,6 +76,7 @@ const socketMiddleware = (function() {
         socket = null
 
         store.dispatch(disconnected('You are logging out...'))
+        store.dispatch(push('/'))
         return socket
 
       case SEND_CHAT_MESSAGE:

@@ -6,7 +6,7 @@ describe('Testing Header.js', () => {
   it('renders correctly', () => {
     const disconnecting = jest.fn()
     const tree = renderer
-      .create(<Header disconnecting={disconnecting} />)
+      .create(<Header disconnecting={disconnecting} userId='userId' />)
       .toJSON()
     expect(tree).toMatchSnapshot()
   })

@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect'
 import { getUsersJS } from 'app/selectors'
 
-const getUser = state => state.get('userReducers')
+const getUserReducers = state => state.get('userReducers')
 
-const getUserId = createSelector(
-  [getUser],
+export const getUserId = createSelector(
+  [getUserReducers],
   user => user.get('userId')
 )
 
@@ -22,6 +22,6 @@ export const getUsersICanInteractWith = createSelector(
 )
 
 export const getMessagesJS = createSelector(
-  [getUser],
+  [getUserReducers],
   user => user.get('userMessages').toJS()
 )

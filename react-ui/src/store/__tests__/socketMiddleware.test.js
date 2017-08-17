@@ -1,4 +1,5 @@
 import configureStore from 'redux-mock-store'
+import { push } from 'react-router-redux'
 import { Server, WebSocket } from 'mock-socket';
 import socketMiddleware from '../socketMiddleware'
 import { setConnection, connecting, disconnecting, disconnected, sendMessage } from '../actions'
@@ -25,7 +26,6 @@ describe('socketMiddleware test suite', () => {
   })
 
   it('should dispatch connecting when SET_CONNECTION action is triggered', (done) => {
-    // Initialize mockstore with empty state
     const ws = store.dispatch(setConnection('userId'))
 
     const listeners = ws.listeners
@@ -37,31 +37,22 @@ describe('socketMiddleware test suite', () => {
     const expectedPayload = connecting()
     expect(actions).toEqual([expectedPayload])
     done();
-    // mockServer.stop(done)
   })
 
   it('should dispatch disconnected when DISCONNECTING action is triggered', (done) => {
-    // Initialize mockstore with empty state
-    // const initialState = {}
-    // const store = mockStore(initialState)
-    // const mockServer = new Server('ws://localhost:4000')
-
     const ws = store.dispatch(disconnecting())
 
     const actions = store.getActions()
+    expect(actions.length).toBe(2)
     const expectedPayload = disconnected('You are logging out...')
-    expect(actions).toEqual([expectedPayload])
+    const expectedSecondPayload = push('/')
+
+    expect(actions).toEqual([expectedPayload, expectedSecondPayload])
     expect(ws).toBe(null)
     done();
-
-    // mockServer.stop(done)
   })
 
   it('should send a message when SEND_CHAT_MESSAGE action is triggered', (done) => {
-    // Initialize mockstore with empty state
-    // const initialState = {}
-    // const store = mockStore(initialState)
-    // const mockServer = new Server('ws://localhost:4000')
     mockServer.on('message', () => {
       console.log('I would like to receive here the socket.send result');
     })
@@ -70,6 +61,5 @@ describe('socketMiddleware test suite', () => {
 
     store.dispatch(sendMessage())
     done();
-    // mockServer.stop(done)
   })
 })

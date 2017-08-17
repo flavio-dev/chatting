@@ -10,6 +10,8 @@ var userConnectionMap = {};
 // list of user names
 var users = [];
 
+const makeSlug = (userId) => userId.replace(/\s+/g, '').toLowerCase();
+
 app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
 // Answer API requests.
@@ -26,16 +28,26 @@ app.ws('/', function(ws, req) {
     const msgJSON = JSON.parse(msgPassed)
 		console.log((new Date()) + ' Received Parameters: '+ msgPassed);
 
-    if (msgJSON.username && msgJSON.username.length && users.indexOf(msgJSON.username) === -1) {
+    if (msgJSON.username && msgJSON.username.length) {
+      const userSlug = makeSlug(msgJSON.username)
+
+      if (users.indexOf(userSlug) > -1) {
+        // if user exists already let's not add it and close the connection
+        ws.send('{"action": "disconnecting"}')
+        ws.close();
+        return
+      }
+
       // a username is registering itself
-      // sending to all usrs someone is loggin in
+      // sending to all users someone is loggin in
       users.forEach(user => {
-        const connection = userConnectionMap[user]
+        const connection = userConnectionMap[user];
         connection.send(msgPassed);
       })
 
-      userConnectionMap[msgJSON.username] = ws
-      users.push(msgJSON.username)
+      // registering the user
+      userConnectionMap[userSlug] = ws;
+      users.push(userSlug);
     } else {
       if (msgJSON.to === 'ALL') {
         // broadcast message to all connected clients
@@ -57,8 +69,12 @@ app.ws('/', function(ws, req) {
     console.log((new Date()) + " Peer "
 			+ user + " disconnected.");
 		// remove user from the list of connected clients
-    userConnectionMap[user] = null
-		users.splice(users.indexOf(user), 1);
+    const userSlug = makeSlug(user)
+    delete userConnectionMap[userSlug]
+    const index = users.indexOf(userSlug)
+    if (index > -1) {
+      users.splice(index, 1);
+    }
   });
 
   console.log('socket', req.testing);
