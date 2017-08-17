@@ -1,6 +1,6 @@
 import React from 'react'
 import App from '../App'
-import { shallow, mount, setState, render } from 'enzyme'
+import { shallow, mount, setState } from 'enzyme'
 import renderer from 'react-test-renderer'
 
 describe('Testing App.js', () => {
