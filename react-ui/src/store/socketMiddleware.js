@@ -21,8 +21,6 @@ const socketMiddleware = (function() {
     url = protocol + host
   }
 
-  console.log('URL in socketMiddleware = ', url)
-
   const onOpen = (ws, store, userId) => evt => {
     // Send a handshake, or authenticate with remote end
     // Tell the store we're connected
@@ -63,8 +61,7 @@ const socketMiddleware = (function() {
         socket.onclose = onClose(socket, store)
         socket.onopen = onOpen(socket, store, action.userId)
         socket.onmessage = onMessage(socket, store)
-
-        return true
+        return socket
 
       // The user wants us to disconnect
       case DISCONNECTING:
@@ -75,7 +72,7 @@ const socketMiddleware = (function() {
 
         // Set our state to disconnected
         store.dispatch(disconnected())
-        return true
+        return socket
 
       case SEND_CHAT_MESSAGE:
         socket.send(JSON.stringify(action))
