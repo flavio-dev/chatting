@@ -9,7 +9,8 @@ class UserWindow extends Component {
     this.state = {
       textMessage: ''
     }
-    this.messagesEnd = {}
+    this.contentWrapper = null
+    this.content = null
     this.typing = this.typing.bind(this)
     this.sendMessage = this.sendMessage.bind(this)
   }
@@ -19,7 +20,7 @@ class UserWindow extends Component {
   }
 
   scrollToBottom() {
-    this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
+    this.contentWrapper.scrollTop = this.contentWrapper.offsetHeight + this.content.offsetHeight
   }
 
   typing(event) {
@@ -42,8 +43,10 @@ class UserWindow extends Component {
           <div className={styles.WindowOnline} />
         }&nbsp;{this.props.title}</h2>
         <div className={styles.Window}>
-          <div className={styles.WindowContentWrapper}>
-            <div className={styles.WindowContent}>
+          <div className={styles.WindowContentWrapper}
+          ref={(el) => this.contentWrapper = el }
+          >
+            <div className={styles.WindowContent} ref={(el) => this.content = el }>
               {this.props.messages.map((message, index) => {
                 if (message.from === this.props.you) {
                   return (
@@ -59,7 +62,6 @@ class UserWindow extends Component {
                   )
                 }
               })}
-              <div ref={(el) => { this.messagesEnd = el; }}></div>
             </div>
           </div>
           <div className={styles.WindowCTA}>

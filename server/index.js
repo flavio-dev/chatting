@@ -11,6 +11,15 @@ var userConnectionMap = {};
 var users = [];
 
 const makeSlug = (userId) => userId.replace(/\s+/g, '').toLowerCase();
+const clearUser = (userSlug) => {
+  console.log('clearUser ', userSlug);
+  console.log('in users?= ', users);
+  delete userConnectionMap[userSlug]
+  const index = users.indexOf(userSlug)
+  if (index > -1) {
+    users.splice(index, 1);
+  }
+}
 
 app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
@@ -30,11 +39,14 @@ app.ws('/', function(ws, req) {
 
     if (msgJSON.username && msgJSON.username.length) {
       const userSlug = makeSlug(msgJSON.username)
-
       if (users.indexOf(userSlug) > -1) {
         // if user exists already let's not add it and close the connection
-        ws.send('{"action": "disconnecting"}')
-        ws.close();
+        if (ws && ws.readyState === 1) {
+          ws.send('{"action": "disconnecting"}')
+          ws.close();
+        } else if (ws && ws.readyState > 1) {
+          clearUser(userSlug)
+        }
         return
       }
 
@@ -42,7 +54,11 @@ app.ws('/', function(ws, req) {
       // sending to all users someone is loggin in
       users.forEach(user => {
         const connection = userConnectionMap[user];
-        connection.send(msgPassed);
+        if (connection && connection.readyState === 1) {
+          connection.send(msgPassed);
+        } else if (connection && connection.readyState > 1) {
+          clearUser(user)
+        }
       })
 
       // registering the user
@@ -53,14 +69,29 @@ app.ws('/', function(ws, req) {
         // broadcast message to all connected clients
         users.forEach(user => {
           const connection = userConnectionMap[user]
-          connection.send(msgPassed);
+          if (connection && connection.readyState === 1) {
+            connection.send(msgPassed);
+          } else if (connection && connection.readyState > 1) {
+            clearUser(user)
+          }
         })
       } else {
         // broadcast message only to the user, and myself
+        const userToSlug = makeSlug(msgJSON.to)
+        const userFromSlug = makeSlug(msgJSON.from)
+
         const connectionTo = userConnectionMap[msgJSON.to]
-        connectionTo.send(msgPassed);
+        if (connectionTo && connectionTo.readyState === 1) {
+          connectionTo.send(msgPassed);
+        } else if (connectionTo && connectionTo.readyState > 1) {
+          clearUser(userToSlug)
+        }
         const connectionFrom = userConnectionMap[msgJSON.from]
-        connectionFrom.send(msgPassed);
+        if (connectionFrom && connectionFrom.readyState === 1) {
+          connectionFrom.send(msgPassed);
+        } else if (connectionFrom && connectionFrom.readyState > 1) {
+          clearUser(userFromSlug)
+        }
       }
     }
   });
@@ -70,11 +101,7 @@ app.ws('/', function(ws, req) {
 			+ user + " disconnected.");
 		// remove user from the list of connected clients
     const userSlug = makeSlug(user)
-    delete userConnectionMap[userSlug]
-    const index = users.indexOf(userSlug)
-    if (index > -1) {
-      users.splice(index, 1);
-    }
+    clearUser(userSlug)
   });
 
   console.log('socket', req.testing);

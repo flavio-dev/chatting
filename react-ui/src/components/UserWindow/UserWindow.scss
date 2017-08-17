@@ -30,13 +30,16 @@
 }
 
 .WindowContentWrapper {
+  height: 300px;
   margin: 20px 0;
   overflow-y: scroll;
 }
 
+
 .WindowContent {
   @include default-wrapper-width();
-  height: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 .WindowYou, .WindowThem {
