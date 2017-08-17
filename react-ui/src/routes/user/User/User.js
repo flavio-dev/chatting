@@ -29,12 +29,10 @@ class User extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.messages) {
-      this.setState({
-        messages: nextProps.messages,
-        users: nextProps.users
-      })
-    }
+    this.setState({
+      messages: nextProps.messages,
+      users: nextProps.users
+    })
   }
 
   filterMessage(user) {

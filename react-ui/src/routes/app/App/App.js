@@ -18,6 +18,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.getInitialListUsers()
+    this.startPolling()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,6 +35,10 @@ class App extends Component {
   enterChat() {
     const slug = this.state.userId.toLowerCase()
     this.props.redirectToUser(slug)
+  }
+
+  startPolling() {
+    setInterval(() => this.props.getInitialListUsers(), 5000);
   }
 
   render() {
