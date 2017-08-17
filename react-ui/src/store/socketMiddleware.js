@@ -70,7 +70,7 @@ const socketMiddleware = (function() {
         }
         socket = null
 
-        store.dispatch(disconnected('You are loging out...'))
+        store.dispatch(disconnected('You are logging out...'))
         return socket
 
       case SEND_CHAT_MESSAGE:
