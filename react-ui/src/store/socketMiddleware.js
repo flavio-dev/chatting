@@ -1,5 +1,3 @@
-import { notify } from 'react-notify-toast';
-
 import {
   connected,
   connecting,
@@ -8,9 +6,7 @@ import {
   SET_CONNECTION,
   SEND_CHAT_MESSAGE,
   DISCONNECTING,
-  newUserLogin,
-  DISCONNECTED,
-  CONNECTED
+  newUserLogin
 } from './actions'
 
 const socketMiddleware = (function() {
@@ -28,14 +24,14 @@ const socketMiddleware = (function() {
   const onOpen = (ws, store, userId) => evt => {
     // Send a handshake, or authenticate with remote end
     // Tell the store we're connected
-    store.dispatch(connected(userId))
+    store.dispatch(connected(userId, 'You are now connected'))
     // Tell the server who we are
     socket.send(JSON.stringify({username: userId}))
   }
 
   const onClose = (ws, store) => evt => {
     // Tell the store we've disconnected
-    store.dispatch(disconnected())
+    store.dispatch(disconnected('You just got disconnected...'))
   }
 
   const onMessage = (ws, store) => evt => {
@@ -45,7 +41,7 @@ const socketMiddleware = (function() {
     if (msg.message && msg.message.length) {
       store.dispatch(messageReceived(msg))
     } else if (msg.username && msg.username.length) {
-      store.dispatch(newUserLogin(msg))
+      store.dispatch(newUserLogin(msg, 'Hey, ' + msg.username + ' just arrived online'))
     }
   }
 
@@ -74,19 +70,11 @@ const socketMiddleware = (function() {
         }
         socket = null
 
-        store.dispatch(disconnected())
+        store.dispatch(disconnected('You are loging out...'))
         return socket
 
       case SEND_CHAT_MESSAGE:
         socket.send(JSON.stringify(action))
-        return true
-
-      case DISCONNECTED:
-        notify.show('You just got disconnected...', 'error', 5000)
-        return true
-
-      case CONNECTED:
-        notify.show('You are connected', 'success', 5000)
         return true
 
       // This action is irrelevant to us, pass it on to the next middleware

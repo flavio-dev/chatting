@@ -1,12 +1,19 @@
-'use strict';
-
 import React from 'react'
-import Layout from '../Layout'
+import configureStore from 'redux-mock-store'
 import renderer from 'react-test-renderer'
+import { Provider } from 'react-redux'
 
-it('renders correctly', () => {
-  const tree = renderer
-    .create(<Layout><p>some children</p></Layout>)
-    .toJSON()
-  expect(tree).toMatchSnapshot()
+import Layout from '../Layout'
+
+describe('Layout.js test suite', () => {
+  it('renders correctly', () => {
+    const mockStore = configureStore()
+    const store = mockStore({})
+    const tree = renderer
+      .create(<Provider store={store}>
+        <Layout><p>some children</p></Layout>
+      </Provider>)
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })

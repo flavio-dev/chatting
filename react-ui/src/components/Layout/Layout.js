@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Header from 'components/Header'
+import HeaderContainer from 'components/HeaderContainer'
 import Footer from 'components/Footer'
 
 export const Layout = ({ children }) => (
   <div>
-    <Header />
+    <HeaderContainer />
     {children}
     <Footer />
   </div>

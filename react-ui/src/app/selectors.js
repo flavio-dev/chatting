@@ -1,13 +1,17 @@
 import { createSelector } from 'reselect'
 
-const getListUsers = state => state.get('listUsersReducer')
+const getAppReducers = state => state.get('appReducers')
+const getUsers = createSelector(
+  [getAppReducers],
+  appReducer => appReducer.get('listUsers')
+)
 
 export const getUsersJS = createSelector(
-  [getListUsers],
+  [getUsers],
   listUsers => listUsers.toJS()
 )
 
 export const getNumUsers = createSelector(
-  [getListUsers],
+  [getUsers],
   listUsers => listUsers.size
 )

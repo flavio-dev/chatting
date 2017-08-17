@@ -1,9 +1,9 @@
 import Immutable from 'immutable'
-import listUsersReducer from '../reducers'
+import listUsersReducer from '../reducers/listUsers'
 import { SET_LIST_USERS } from 'app/actions'
 import { NEW_USER_LOGIN } from 'store/actions'
 
-describe('reducers at app level', () => {
+describe('reducers at app level: listUsers under appReducers', () => {
   it('reducer returns initial state if typenot matching', () => {
     const initialState = Immutable.List()
     const state = listUsersReducer(initialState, {type: ''})

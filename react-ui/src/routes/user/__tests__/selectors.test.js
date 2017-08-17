@@ -19,7 +19,9 @@ describe('selectors for user', () => {
         }
       ])
     }),
-    listUsersReducer: Immutable.List(['userId', 'secondUserId'])
+    appReducers: Immutable.Map({
+      listUsers: Immutable.List(['userId', 'secondUserId'])
+    })
   })
 
   it('getUsersICanInteractWith selector returns list of users I can interact with', () => {

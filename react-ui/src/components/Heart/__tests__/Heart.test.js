@@ -1,10 +1,10 @@
 import React from 'react'
-import Header from '../Header'
+import Heart from '../Heart'
 import renderer from 'react-test-renderer'
 
 it('renders correctly', () => {
   const tree = renderer
-    .create(<Header />)
+    .create(<Heart />)
     .toJSON()
   expect(tree).toMatchSnapshot()
 })
