@@ -1,0 +1,455 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing User.js renders correctly with empty list of messages but with users 1`] = `
+<div
+  className="UserContent"
+>
+  <h2
+    className="UserTitle"
+  >
+    Hello 
+    userId
+  </h2>
+  <div
+    className="UserBoard"
+  >
+    <div
+      className="WindowWrapper"
+    >
+      <h2
+        className="WindowTitle"
+      >
+         
+        forum
+      </h2>
+      <div
+        className="Window"
+      >
+        <div
+          className="WindowContentWrapper"
+        >
+          <div
+            className="WindowContent"
+          />
+        </div>
+        <div
+          className="WindowCTA"
+        >
+          <textarea
+            onChange={[Function]}
+            placeholder="Type a message..."
+            value=""
+          />
+          <button
+            onClick={[Function]}
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="WindowWrapper"
+    >
+      <h2
+        className="WindowTitle"
+      >
+        <div
+          className="WindowOnline"
+        />
+         
+        secondUser
+      </h2>
+      <div
+        className="Window"
+      >
+        <div
+          className="WindowContentWrapper"
+        >
+          <div
+            className="WindowContent"
+          />
+        </div>
+        <div
+          className="WindowCTA"
+        >
+          <textarea
+            onChange={[Function]}
+            placeholder="Type a message..."
+            value=""
+          />
+          <button
+            onClick={[Function]}
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="WindowWrapper"
+    >
+      <h2
+        className="WindowTitle"
+      >
+        <div
+          className="WindowOnline"
+        />
+         
+        thirdUser
+      </h2>
+      <div
+        className="Window"
+      >
+        <div
+          className="WindowContentWrapper"
+        >
+          <div
+            className="WindowContent"
+          />
+        </div>
+        <div
+          className="WindowCTA"
+        >
+          <textarea
+            onChange={[Function]}
+            placeholder="Type a message..."
+            value=""
+          />
+          <button
+            onClick={[Function]}
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Testing User.js renders correctly with empty list of messages/users 1`] = `
+<div
+  className="UserContent"
+>
+  <h2
+    className="UserTitle"
+  >
+    Hello 
+    userId
+  </h2>
+  <div
+    className="UserBoard"
+  >
+    <div
+      className="WindowWrapper"
+    >
+      <h2
+        className="WindowTitle"
+      >
+         
+        forum
+      </h2>
+      <div
+        className="Window"
+      >
+        <div
+          className="WindowContentWrapper"
+        >
+          <div
+            className="WindowContent"
+          />
+        </div>
+        <div
+          className="WindowCTA"
+        >
+          <textarea
+            onChange={[Function]}
+            placeholder="Type a message..."
+            value=""
+          />
+          <button
+            onClick={[Function]}
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Testing User.js renders correctly with list of users and list of messages 1`] = `
+<div
+  className="UserContent"
+>
+  <h2
+    className="UserTitle"
+  >
+    Hello 
+    userId
+  </h2>
+  <div
+    className="UserBoard"
+  >
+    <div
+      className="WindowWrapper"
+    >
+      <h2
+        className="WindowTitle"
+      >
+         
+        forum
+      </h2>
+      <div
+        className="Window"
+      >
+        <div
+          className="WindowContentWrapper"
+        >
+          <div
+            className="WindowContent"
+          />
+        </div>
+        <div
+          className="WindowCTA"
+        >
+          <textarea
+            onChange={[Function]}
+            placeholder="Type a message..."
+            value=""
+          />
+          <button
+            onClick={[Function]}
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="WindowWrapper"
+    >
+      <h2
+        className="WindowTitle"
+      >
+        <div
+          className="WindowOnline"
+        />
+         
+        secondUser
+      </h2>
+      <div
+        className="Window"
+      >
+        <div
+          className="WindowContentWrapper"
+        >
+          <div
+            className="WindowContent"
+          >
+            <div
+              className="WindowYou"
+            >
+              <span>
+                you: 
+              </span>
+              the message
+            </div>
+          </div>
+        </div>
+        <div
+          className="WindowCTA"
+        >
+          <textarea
+            onChange={[Function]}
+            placeholder="Type a message..."
+            value=""
+          />
+          <button
+            onClick={[Function]}
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="WindowWrapper"
+    >
+      <h2
+        className="WindowTitle"
+      >
+        <div
+          className="WindowOnline"
+        />
+         
+        thirdUser
+      </h2>
+      <div
+        className="Window"
+      >
+        <div
+          className="WindowContentWrapper"
+        >
+          <div
+            className="WindowContent"
+          />
+        </div>
+        <div
+          className="WindowCTA"
+        >
+          <textarea
+            onChange={[Function]}
+            placeholder="Type a message..."
+            value=""
+          />
+          <button
+            onClick={[Function]}
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Testing User.js renders correctly with list of users and list of messages to ALL 1`] = `
+<div
+  className="UserContent"
+>
+  <h2
+    className="UserTitle"
+  >
+    Hello 
+    userId
+  </h2>
+  <div
+    className="UserBoard"
+  >
+    <div
+      className="WindowWrapper"
+    >
+      <h2
+        className="WindowTitle"
+      >
+         
+        forum
+      </h2>
+      <div
+        className="Window"
+      >
+        <div
+          className="WindowContentWrapper"
+        >
+          <div
+            className="WindowContent"
+          >
+            <div
+              className="WindowYou"
+            >
+              <span>
+                you: 
+              </span>
+              the message
+            </div>
+          </div>
+        </div>
+        <div
+          className="WindowCTA"
+        >
+          <textarea
+            onChange={[Function]}
+            placeholder="Type a message..."
+            value=""
+          />
+          <button
+            onClick={[Function]}
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="WindowWrapper"
+    >
+      <h2
+        className="WindowTitle"
+      >
+        <div
+          className="WindowOnline"
+        />
+         
+        secondUser
+      </h2>
+      <div
+        className="Window"
+      >
+        <div
+          className="WindowContentWrapper"
+        >
+          <div
+            className="WindowContent"
+          />
+        </div>
+        <div
+          className="WindowCTA"
+        >
+          <textarea
+            onChange={[Function]}
+            placeholder="Type a message..."
+            value=""
+          />
+          <button
+            onClick={[Function]}
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="WindowWrapper"
+    >
+      <h2
+        className="WindowTitle"
+      >
+        <div
+          className="WindowOnline"
+        />
+         
+        thirdUser
+      </h2>
+      <div
+        className="Window"
+      >
+        <div
+          className="WindowContentWrapper"
+        >
+          <div
+            className="WindowContent"
+          />
+        </div>
+        <div
+          className="WindowCTA"
+        >
+          <textarea
+            onChange={[Function]}
+            placeholder="Type a message..."
+            value=""
+          />
+          <button
+            onClick={[Function]}
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

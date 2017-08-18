@@ -1,0 +1,36 @@
+@import "globals.scss";
+
+.Header {
+  background-color: $color-white;
+  border-bottom: 5px solid $color-milk-chocolate;
+  color: $color-blue-sky;
+  font-family: $title-font-family;
+}
+
+.HeaderContent {
+  @include default-wrapper-width();
+  align-items: center;
+  display: flex;
+  height: 80px;
+  justify-content: space-between;
+}
+
+.HeaderBrand {
+  align-items: center;
+  display: flex;
+}
+
+.HeaderLogo {
+  height: 56px;
+  transform: rotate(72deg);
+  width: 56px;
+}
+
+.HeaderTitle {
+  font-size: 40px;
+  margin-left: 30px;
+
+  @media #{$small-and-down} {
+    display: none;
+  }
+}

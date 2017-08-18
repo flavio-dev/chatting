@@ -1,0 +1,29 @@
+@import "globals.scss";
+
+.UserContent {
+  @include default-wrapper-width();
+  padding: 40px 0;
+
+  @media #{$medium-and-up} {
+    padding: 60px 0;
+  }
+}
+
+.UserTitle {
+  color: $color-chocolate;
+  font-family: $title-font-family;
+  font-size: 40px;
+  margin-bottom: 60px;
+  text-align: center;
+  text-transform: capitalize;
+
+  @media #{$medium-and-up} {
+    font-size: 60px;
+    margin-bottom: 40px;
+  }
+}
+
+.UserBoard {
+  display: flex;
+  flex-wrap: wrap;
+}
