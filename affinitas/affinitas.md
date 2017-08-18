@@ -42,16 +42,16 @@ I am sorry it took a bit more time (holidays and very busy days at work). To run
 
 into root for server:
 
-`$ yarn
+`$ yarn`
 
-$ yarn start`
+`$ yarn start`
 
 
 then `$ cd react-ui`
 
-`$ yarn
+`$ yarn`
 
-$ yarn run start`
+`$ yarn run start`
 
 
 to run tests: `$ yarn run test`
