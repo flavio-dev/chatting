@@ -29,7 +29,7 @@ As much interesting it was to finally type some tests for React, I ended up stru
 
 ## Improvements
 
-I think there are a few adjustments and features that could complete this chat room. My ideal conclusion would have been a chat with (proper) push functionalities, user management (name clashing, connections), proper flow from connecting to disconnecting (view updates accordingly etc...), the logout button in display only when you are connected, visual/sound effect on messages, history management (which I would have done between local storage and server side recovery)... However, as there is a state, you can login with a name, type stuff on the forum, logout then login again and the messages should be still there.
+I think there are a few adjustments and features that could complete this chat room. My ideal conclusion would have been a chat with (proper) push functionalities, user management (name clashing, connections), proper flow from connecting to disconnecting (view updates accordingly etc...), the logout button in display only when you are connected, visual/sound effect on messages, enter key for sending the messages, history conv management (which I would have done between local storage and server side recovery)... However, as there is a state, you can login with a name, type stuff on the forum, logout then login again and the messages should be still there.
 The management of the messages could also be very much optimised. I use a single source of truth when it comes to messages, which means a lot of filtering. This is quite inefficient as the project became from 2 people talking to multiple talking, then to a chat group etc... message queues per conversion would have been a lot better.
 
 
@@ -41,14 +41,20 @@ It also gave me a little bit more confidence on (finally!) starting to implement
 I am sorry it took a bit more time (holidays and very busy days at work). To run the project:
 
 into root for server:
-`yarn`
-`yarn start`
 
-then `cd react-ui`
-`yarn`
-`yarn run start`
+`$ yarn
 
-to run tests: `yarn run test`
+$ yarn start`
+
+
+then `$ cd react-ui`
+
+`$ yarn
+
+$ yarn run start`
+
+
+to run tests: `$ yarn run test`
 
 Any question don't hesitate to contact me!
 
