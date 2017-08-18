@@ -29,7 +29,10 @@ As much interesting it was to finally type some tests for React, I ended up stru
 
 ## Improvements
 
-I think there are a few adjustments and features that could complete this chat room. My ideal conclusion would have been a chat with (proper) push functionalities, user management (name clashing, connections), proper flow from connecting to disconnecting (view updates accordingly etc...), the logout button in display only when you are connected, visual/sound effect on messages, enter key for sending the messages, history conv management (which I would have done between local storage and server side recovery)... However, as there is a state, you can login with a name, type stuff on the forum, logout then login again and the messages should be still there.
+I think there are a few adjustments and features that could complete this chat room. My ideal conclusion would have been a chat with (proper) push functionalities, user management (name clashing, connections), proper flow from connecting to disconnecting (view updates accordingly etc...), the logout button in display only when you are connected, visual/sound effect on messages, enter key for sending the messages, history conv management (which I would have done between local storage and server side recovery)...
+
+Towards the end of the project and as mentioned above, I decided to simplify a bit the way the server was running, impacting on how to maintain the state of list of users in the FE (polling). That means the User component is now using the polling and setInterval, the same way App component does. This is a call for the use of a HOC where I could have define this logic in a single place ad share them across the 2 components.
+
 The management of the messages could also be very much optimised. I use a single source of truth when it comes to messages, which means a lot of filtering. This is quite inefficient as the project became from 2 people talking to multiple talking, then to a chat group etc... message queues per conversion would have been a lot better.
 
 
