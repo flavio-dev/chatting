@@ -46,6 +46,7 @@ const socketMiddleware = (function() {
     } else if (msg.username && msg.username.length) {
       store.dispatch(newUserLogin(msg, 'Hey, ' + msg.username + ' just arrived online'))
     } else if (msg.action && msg.action === 'disconnecting') {
+      // simplified the serve and not in use anymore
       store.dispatch(disconnecting())
     }
   }

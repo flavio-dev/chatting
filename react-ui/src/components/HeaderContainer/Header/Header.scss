@@ -29,4 +29,8 @@
 .HeaderTitle {
   font-size: 40px;
   margin-left: 30px;
+
+  @media #{$small-and-down} {
+    display: none;
+  }
 }

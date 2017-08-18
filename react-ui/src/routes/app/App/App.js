@@ -28,8 +28,10 @@ class App extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({users: nextProps.users})
-    this.setState({numUsers: nextProps.numUsers})
+    this.setState({
+      numUsers: nextProps.numUsers,
+      users: nextProps.users
+    })
   }
 
   typing(event) {

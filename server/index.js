@@ -11,15 +11,21 @@ var userConnectionMap = {};
 var users = [];
 
 const makeSlug = (userId) => userId.replace(/\s+/g, '').toLowerCase();
-const clearUser = (userSlug) => {
-  console.log('clearUser ', userSlug);
-  console.log('in users?= ', users);
-  delete userConnectionMap[userSlug]
-  const index = users.indexOf(userSlug)
-  if (index > -1) {
-    users.splice(index, 1);
-  }
+
+const garbageCollector = () => {
+  users = users.filter((user) => {
+    const userSlug = makeSlug(user)
+    if (!userConnectionMap[userSlug] || userConnectionMap[userSlug].readyState > 1) {
+      delete userConnectionMap[userSlug]
+    } else {
+      return user
+    }
+  })
 }
+
+const interval = setInterval(() => {
+  garbageCollector()
+}, 5000);
 
 app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
@@ -39,40 +45,31 @@ app.ws('/', function(ws, req) {
 
     if (msgJSON.username && msgJSON.username.length) {
       const userSlug = makeSlug(msgJSON.username)
-      if (users.indexOf(userSlug) > -1) {
-        // if user exists already let's not add it and close the connection
-        if (ws && ws.readyState === 1) {
-          ws.send('{"action": "disconnecting"}')
-          ws.close();
-        } else if (ws && ws.readyState > 1) {
-          clearUser(userSlug)
-        }
+      if (users.indexOf(msgJSON.username) > -1) {
         return
       }
 
       // a username is registering itself
       // sending to all users someone is loggin in
       users.forEach(user => {
-        const connection = userConnectionMap[user];
+        const userSlug = makeSlug(user)
+        const connection = userConnectionMap[userSlug];
         if (connection && connection.readyState === 1) {
           connection.send(msgPassed);
-        } else if (connection && connection.readyState > 1) {
-          clearUser(user)
         }
       })
 
       // registering the user
       userConnectionMap[userSlug] = ws;
-      users.push(userSlug);
+      users.push(msgJSON.username);
     } else {
       if (msgJSON.to === 'ALL') {
         // broadcast message to all connected clients
         users.forEach(user => {
-          const connection = userConnectionMap[user]
+          const userSlug = makeSlug(user)
+          const connection = userConnectionMap[userSlug]
           if (connection && connection.readyState === 1) {
             connection.send(msgPassed);
-          } else if (connection && connection.readyState > 1) {
-            clearUser(user)
           }
         })
       } else {
@@ -80,17 +77,13 @@ app.ws('/', function(ws, req) {
         const userToSlug = makeSlug(msgJSON.to)
         const userFromSlug = makeSlug(msgJSON.from)
 
-        const connectionTo = userConnectionMap[msgJSON.to]
+        const connectionTo = userConnectionMap[userToSlug]
         if (connectionTo && connectionTo.readyState === 1) {
           connectionTo.send(msgPassed);
-        } else if (connectionTo && connectionTo.readyState > 1) {
-          clearUser(userToSlug)
         }
-        const connectionFrom = userConnectionMap[msgJSON.from]
+        const connectionFrom = userConnectionMap[userFromSlug]
         if (connectionFrom && connectionFrom.readyState === 1) {
           connectionFrom.send(msgPassed);
-        } else if (connectionFrom && connectionFrom.readyState > 1) {
-          clearUser(userFromSlug)
         }
       }
     }
@@ -99,9 +92,6 @@ app.ws('/', function(ws, req) {
   ws.on('close', function(connection, user) {
     console.log((new Date()) + " Peer "
 			+ user + " disconnected.");
-		// remove user from the list of connected clients
-    const userSlug = makeSlug(user)
-    clearUser(userSlug)
   });
 
   console.log('socket', req.testing);

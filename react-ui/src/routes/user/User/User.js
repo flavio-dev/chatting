@@ -26,6 +26,11 @@ class User extends Component {
   componentDidMount() {
     this.props.setConnection(this.userId)
     this.props.getInitialListUsers()
+    this.startPolling()
+  }
+
+  componentWillUnmount() {
+    this.clearPolling()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,6 +38,14 @@ class User extends Component {
       messages: nextProps.messages,
       users: nextProps.users
     })
+  }
+
+  startPolling() {
+    this.interval = setInterval(() => this.props.getInitialListUsers(), 5000);
+  }
+
+  clearPolling() {
+    clearInterval(this.interval)
   }
 
   filterMessage(user) {

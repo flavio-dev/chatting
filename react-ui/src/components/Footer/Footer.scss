@@ -13,4 +13,10 @@
   align-items: center;
   display: flex;
   height: 80px;
+
+  span {
+    @media #{$small-and-down} {
+      display: none;
+    }
+  }
 }
