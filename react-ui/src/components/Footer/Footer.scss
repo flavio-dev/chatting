@@ -15,8 +15,14 @@
   height: 80px;
 
   span {
+    margin-right: 20px;
+
     @media #{$small-and-down} {
       display: none;
     }
+  }
+
+  @media #{$small-and-down} {
+    justify-content: center;
   }
 }
