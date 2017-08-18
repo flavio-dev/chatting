@@ -62,4 +62,4 @@ Cheers,
 
 F
 
-Oh, [the app runs on heroku](chatting-aff.herokuapp.com) if you want.
+Oh, [the app runs on heroku](https://chatting-aff.herokuapp.com/) if you want.
