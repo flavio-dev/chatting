@@ -15,3 +15,8 @@ export const getNumUsers = createSelector(
   [getUsers],
   listUsers => listUsers.size
 )
+
+export const getConnectionState = createSelector(
+  [getAppReducers],
+  appReducer => appReducer.get('connectionStatus')
+)

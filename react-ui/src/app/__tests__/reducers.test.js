@@ -1,6 +1,7 @@
 import Immutable from 'immutable'
 import listUsersReducer from '../reducers/listUsers'
 import notifyReducer from '../reducers/notify'
+import connectionStatusReducer from '../reducers/connectionStatus'
 import { notify } from 'react-notify-toast';
 import { SET_LIST_USERS } from 'app/actions'
 import {
@@ -102,24 +103,24 @@ describe('reducers at app level: connectionStatus under appReducers', () => {
   })
 
   it('reducer for DISCONNECTED', () => {
-    const expectedStatus = 'DISCONNECTED'
+    const expectedStatus = 'disconnected'
     const state = ''
-    notify.show = jest.fn()
 
     const stateConnectionStatus = connectionStatusReducer(state, {
-      type: DISCONNECTED
+      type: DISCONNECTED,
+      status: 'disconnected'
     })
 
     expect(stateConnectionStatus).toEqual(expectedStatus)
   })
 
   it('reducer for CONNECTED', () => {
-    const expectedStatus = 'CONNECTED'
+    const expectedStatus = 'connected'
     const state = ''
-    notify.show = jest.fn()
 
     const stateConnectionStatus = connectionStatusReducer(state, {
-      type: CONNECTED
+      type: CONNECTED,
+      status: 'connected'
     })
 
     expect(stateConnectionStatus).toEqual(expectedStatus)

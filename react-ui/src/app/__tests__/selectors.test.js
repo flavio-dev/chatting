@@ -21,11 +21,11 @@ describe('selectors for list of users', () => {
 describe('selectors for status of the connection', () => {
   const state = Immutable.Map({
     appReducers: Immutable.Map({
-      connectionStatus: 'CONNECTED'
+      connectionStatus: 'status'
     })
   })
 
   it('getConnectionState selector returns status', () => {
-    expect(getConnectionState(state)).toEqual('CONNECTED')
+    expect(getConnectionState(state)).toEqual('status')
   })
 })
