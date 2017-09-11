@@ -3,10 +3,14 @@ import listUsersReducer from '../reducers/listUsers'
 import notifyReducer from '../reducers/notify'
 import { notify } from 'react-notify-toast';
 import { SET_LIST_USERS } from 'app/actions'
-import { NEW_USER_LOGIN, DISCONNECTED, CONNECTED } from 'store/actions'
+import {
+  NEW_USER_LOGIN,
+  DISCONNECTED,
+  CONNECTED
+} from 'store/actions'
 
 describe('reducers at app level: listUsers under appReducers', () => {
-  it('reducer returns initial state if typenot matching', () => {
+  it('reducer returns initial state if type not matching', () => {
     const initialState = Immutable.List()
     const state = listUsersReducer(initialState, {type: ''})
 
@@ -42,7 +46,7 @@ describe('reducers at app level: listUsers under appReducers', () => {
 })
 
 describe('reducers at app level: notify under appReducers', () => {
-  it('reducer returns initial state if typenot matching', () => {
+  it('reducer returns initial state if type not matching', () => {
     const initialState = ''
     const state = notifyReducer(initialState, {type: ''})
 
@@ -86,5 +90,38 @@ describe('reducers at app level: notify under appReducers', () => {
     })
 
     expect(stateNotify).toEqual(expectedMessage)
+  })
+})
+
+describe('reducers at app level: connectionStatus under appReducers', () => {
+  it('reducer returns initial state if type not matching', () => {
+    const initialState = ''
+    const state = connectionStatusReducer(initialState, {type: ''})
+
+    expect(initialState).toEqual(state)
+  })
+
+  it('reducer for DISCONNECTED', () => {
+    const expectedStatus = 'DISCONNECTED'
+    const state = ''
+    notify.show = jest.fn()
+
+    const stateConnectionStatus = connectionStatusReducer(state, {
+      type: DISCONNECTED
+    })
+
+    expect(stateConnectionStatus).toEqual(expectedStatus)
+  })
+
+  it('reducer for CONNECTED', () => {
+    const expectedStatus = 'CONNECTED'
+    const state = ''
+    notify.show = jest.fn()
+
+    const stateConnectionStatus = connectionStatusReducer(state, {
+      type: CONNECTED
+    })
+
+    expect(stateConnectionStatus).toEqual(expectedStatus)
   })
 })

@@ -16,4 +16,18 @@ describe('actions at app level', () => {
     }
     expect(actions.getInitialListUsers()).toEqual(expectedAction)
   })
+
+  it('getConnectionStatus should create an action to retieve the status of the user connection', () => {
+    const expectedAction = {
+      type: actions.GET_CONNECTION_STATUS
+    }
+    expect(actions.getStatus()).toEqual(expectedAction)
+  })
+
+  it('setConnectionStatus should create an action to set the status of the user connection', () => {
+    const expectedAction = {
+      type: actions.SET_CONNECTION_STATUS
+    }
+    expect(actions.setStatus()).toEqual(expectedAction)
+  })
 })
