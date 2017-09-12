@@ -2,7 +2,7 @@ import React from 'react'
 import Immutable from 'immutable'
 import configureStore from 'redux-mock-store'
 import renderer from 'react-test-renderer'
-import { shallow, setState, render } from 'enzyme'
+import { shallow } from 'enzyme'
 import { Provider } from 'react-redux'
 
 import Layout from '../Layout'
@@ -12,6 +12,9 @@ describe('Layout.js test suite', () => {
     const mockStore = configureStore()
     const store = mockStore(
       Immutable.Map({
+        appReducers: Immutable.Map({
+          connectionStatus: 'connected'
+        }),
         userReducers: Immutable.Map({
           userId: 'userId'
         })

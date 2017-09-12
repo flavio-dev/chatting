@@ -53,11 +53,6 @@ exports[`Testing Header.js renders correctly without logout button 1`] = `
         Chatting
       </div>
     </div>
-    <button
-      onClick={[Function]}
-    >
-      Logout
-    </button>
   </div>
 </div>
 `;
