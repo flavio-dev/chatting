@@ -1,6 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing Header.js renders correctly 1`] = `
+exports[`Testing Header.js renders correctly with logout button 1`] = `
+<div
+  className="Header"
+>
+  <div
+    className="HeaderContent"
+  >
+    <div
+      className="HeaderBrand"
+      onClick={[Function]}
+    >
+      <img
+        alt="logo"
+        className="HeaderLogo"
+        src="logo.png"
+      />
+      <div
+        className="HeaderTitle"
+      >
+        Chatting
+      </div>
+    </div>
+    <button
+      onClick={[Function]}
+    >
+      Logout
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Testing Header.js renders correctly without logout button 1`] = `
 <div
   className="Header"
 >
