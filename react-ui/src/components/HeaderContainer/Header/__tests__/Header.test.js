@@ -37,4 +37,15 @@ describe('Testing Header.js', () => {
 
     expect(wrapper.find('button').length).toBe(0)
   })
+
+  it('triggers an action DISCONNECTED when clicking on the button', () => {
+    const disconnecting = jest.fn()
+    const wrapper = mount(
+      <Header disconnecting={disconnecting} userId='userId' connectionStatus='connected' />
+    )
+
+    wrapper.find('button').simulate('click')
+
+    expect(disconnecting.calls.length).toBe(1)
+  })
 })
