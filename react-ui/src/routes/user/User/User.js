@@ -12,7 +12,8 @@ class User extends Component {
     this.userId = ''
     this.state = {
       messages: this.props.messages,
-      users: this.props.users
+      users: this.props.users,
+      userSelected: this.props.userSelected
     }
 
     this.filterMessage = this.filterMessage.bind(this)
@@ -37,7 +38,8 @@ class User extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       messages: nextProps.messages,
-      users: nextProps.users
+      users: nextProps.users,
+      userSelected: nextProps.userSelected
     })
   }
 
@@ -79,15 +81,21 @@ class User extends Component {
               sendMessage={this.props.sendMessage}
              />
             {this.state.users.map((user, index) => {
-              return <UserWindow
-                key={index}
-                title={user}
-                messages={this.filterMessage(user)}
-                to={user}
-                you={this.userId}
-                sendMessage={this.props.sendMessage}
-                online
-              />
+              console.log('this.state.userSelected = ', this.state.userSelected);
+
+              if (user === this.state.userSelected) {
+                return <UserWindow
+                  key={index}
+                  title={user}
+                  messages={this.filterMessage(user)}
+                  to={user}
+                  you={this.userId}
+                  sendMessage={this.props.sendMessage}
+                  online
+                />
+              } else {
+                return null
+              }
             })}
           </div>
         </div>
