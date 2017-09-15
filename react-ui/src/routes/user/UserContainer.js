@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { setConnection, sendMessage } from 'store/actions'
+import { sendMessage } from 'store/actions'
 import { getInitialListUsers } from 'app/actions'
 
 import User from './User'
@@ -12,7 +12,7 @@ const mapActionCreators = (dispatch) => ({
     dispatch(setUserId(userId))
   },
   setConnection: (userId) => {
-    dispatch(setConnection(userId))
+    // dispatch(setConnection(userId))
   },
   sendMessage: (message, from, to) => {
     dispatch(sendMessage(message, from, to))

@@ -27,7 +27,6 @@ const socketMiddleware = (function() {
   const onOpen = (ws, store, userId) => evt => {
     // Send a handshake, or authenticate with remote end
     // Tell the store we're connected
-    store.dispatch(connected(userId, 'You are now connected'))
     // Tell the server who we are
     socket.send(JSON.stringify({username: userId}))
   }
@@ -35,13 +34,22 @@ const socketMiddleware = (function() {
   const onClose = (ws, store) => evt => {
     // Tell the store we've disconnected
     store.dispatch(disconnected('You just got disconnected...'))
+    // store.dispatch(push('/'))
   }
 
   const onMessage = (ws, store) => evt => {
     // Parse the JSON message received on the websocket
     var msg = JSON.parse(evt.data)
+
     // Dispatch an action that adds the received message to our state
-    if (msg.message && msg.message.length) {
+    if (msg.error && msg.error.length) {
+      store.dispatch(disconnected('Someone else is using that username'))
+    }
+    else if (msg.connectionAccepted && msg.connectionAccepted.length) {
+      store.dispatch(push('/' + msg.connectionAccepted))
+      store.dispatch(connected(msg.connectionAccepted, 'You are now connected'))
+    }
+    else if (msg.message && msg.message.length) {
       store.dispatch(messageReceived(msg))
     } else if (msg.username && msg.username.length) {
       store.dispatch(newUserLogin(msg, 'Hey, ' + msg.username + ' just arrived online'))

@@ -7,6 +7,10 @@ export const SET_CONNECTION = 'SET_CONNECTION'
 export const SEND_CHAT_MESSAGE = 'SEND_CHAT_MESSAGE'
 export const NEW_USER_LOGIN = 'NEW_USER_LOGIN'
 
+export const SET_INITIAL_CONNECTION = 'SET_INITIAL_CONNECTION'
+
+
+
 export const connected = (userId, message) => ({
   type: CONNECTED,
   status: 'connected',
@@ -49,6 +53,14 @@ export const newUserLogin = (payload, message) => ({
 export const setConnection = (userId) => {
   return {
     type: SET_CONNECTION,
+    userId
+  }
+}
+
+export const setInitialConnection = (userId) => {
+  console.log('inside acion setInitialConnection userId ', userId);
+  return {
+    type: SET_INITIAL_CONNECTION,
     userId
   }
 }

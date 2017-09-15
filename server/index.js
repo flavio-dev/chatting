@@ -15,8 +15,8 @@ const makeSlug = (userId) => userId.replace(/\s+/g, '').toLowerCase();
 const garbageCollector = () => {
   users = users.filter((user) => {
     const userSlug = makeSlug(user)
-    if (!userConnectionMap[userSlug] || userConnectionMap[userSlug].readyState > 1) {
-      delete userConnectionMap[userSlug]
+    if (!userConnectionMap[userSlug].connection || userConnectionMap[userSlug].connection.readyState > 1) {
+      delete userConnectionMap[userSlug].connection
     } else {
       return user
     }
@@ -39,6 +39,16 @@ app.get('/users', function (req, res) {
 });
 
 app.ws('/', function(ws, req) {
+  // ws.on('open', function open(msg) {
+  //   console.log('ON OPEN');
+  //   if (users.indexOf(msgJSON.username) > -1) {
+  //     console.log('hey are we entering here becasue user alreadyt exists')
+  //     //// TODO
+  //     ws.send('ERROR');
+  //     return
+  //   }
+  // });
+
   ws.on('message', function(msgPassed) {
     const msgJSON = JSON.parse(msgPassed)
 		console.log((new Date()) + ' Received Parameters: '+ msgPassed);
@@ -46,7 +56,17 @@ app.ws('/', function(ws, req) {
     if (msgJSON.username && msgJSON.username.length) {
       const userSlug = makeSlug(msgJSON.username)
       if (users.indexOf(msgJSON.username) > -1) {
+        console.log('hey are we entering here')
+        //// TODO
+        ws.send(JSON.stringify({
+          error: 'Sorry buddy'
+        }));
+        ws.close()
         return
+      } else {
+        ws.send(JSON.stringify({
+          connectionAccepted: userSlug
+        }));
       }
 
       // a username is registering itself
@@ -60,14 +80,17 @@ app.ws('/', function(ws, req) {
       })
 
       // registering the user
-      userConnectionMap[userSlug] = ws;
+      userConnectionMap[userSlug] = {
+        connection: ws,
+        hasLogged: true
+      };
       users.push(msgJSON.username);
     } else {
       if (msgJSON.to === 'ALL') {
         // broadcast message to all connected clients
         users.forEach(user => {
           const userSlug = makeSlug(user)
-          const connection = userConnectionMap[userSlug]
+          const connection = userConnectionMap[userSlug].connection
           if (connection && connection.readyState === 1) {
             connection.send(msgPassed);
           }
@@ -77,11 +100,11 @@ app.ws('/', function(ws, req) {
         const userToSlug = makeSlug(msgJSON.to)
         const userFromSlug = makeSlug(msgJSON.from)
 
-        const connectionTo = userConnectionMap[userToSlug]
+        const connectionTo = userConnectionMap[userToSlug].connection
         if (connectionTo && connectionTo.readyState === 1) {
           connectionTo.send(msgPassed);
         }
-        const connectionFrom = userConnectionMap[userFromSlug]
+        const connectionFrom = userConnectionMap[userFromSlug].connection
         if (connectionFrom && connectionFrom.readyState === 1) {
           connectionFrom.send(msgPassed);
         }

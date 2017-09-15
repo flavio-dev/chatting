@@ -62,4 +62,31 @@ describe('socketMiddleware test suite', () => {
     store.dispatch(sendMessage())
     done();
   })
+
+  it('should send a username message to server', (done) => {
+    mockServer.on('message', () => {
+      console.log('this is the OPEN');
+
+    })
+    // have to call this to initialise the websocket
+    const ws = store.dispatch(setConnection('userId'))
+    // console.log('balblblabla ws = ', ws);
+    // Test if mock server receive the message sent by socket client onOpen
+    // OTHER Test if mock server receive the message sent by socket client onMessage
+    // -- here we would test the various mesages individually to check if dispatch are being called
+
+    // ANOTHER OTHER Test if mock server dispatches a dicsonned onClose action from ws server
+
+    done();
+
+    // const chatSocket = new WebSocket('ws://localhost:4000');
+    //
+    // chatSocket.onopen = (event) => {
+    //   console.log('event on open: ', event);
+    // }
+    //
+    // chatSocket.onmessage = (event) => {
+    //   console.log('event on onmessage: ', event);
+    // }
+  })
 })
