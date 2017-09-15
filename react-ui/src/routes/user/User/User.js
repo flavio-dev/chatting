@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import UserWindow from 'components/UserWindow'
+import SidebarContainer from 'components/SidebarContainer'
 
 import styles from './User.css'
 
@@ -63,27 +64,32 @@ class User extends Component {
 
   render() {
     return (
-      <div className={styles.UserContent}>
-        <h2 className={styles.UserTitle}>Hello {this.userId}</h2>
-        <div className={styles.UserBoard}>
-          <UserWindow
-            title='forum'
-            messages={this.filterMessageAll()}
-            to='ALL'
-            you={this.userId}
-            sendMessage={this.props.sendMessage}
-           />
-          {this.state.users.map((user, index) => {
-            return <UserWindow
-              key={index}
-              title={user}
-              messages={this.filterMessage(user)}
-              to={user}
+      <div className={styles.UserLayout}>
+        <div className={styles.UserCol1}>
+          <SidebarContainer />
+        </div>
+        <div className={styles.UserContent}>
+          <h2 className={styles.UserTitle}>Hello {this.userId}</h2>
+          <div className={styles.UserBoard}>
+            <UserWindow
+              title='forum'
+              messages={this.filterMessageAll()}
+              to='ALL'
               you={this.userId}
               sendMessage={this.props.sendMessage}
-              online
-            />
-          })}
+             />
+            {this.state.users.map((user, index) => {
+              return <UserWindow
+                key={index}
+                title={user}
+                messages={this.filterMessage(user)}
+                to={user}
+                you={this.userId}
+                sendMessage={this.props.sendMessage}
+                online
+              />
+            })}
+          </div>
         </div>
       </div>
     )

@@ -1,0 +1,28 @@
+@import "globals.scss";
+
+.Sidebar {
+  @include default-wrapper-width();
+  font-family: $title-font-family;
+  padding-top: 20px;
+}
+
+.SidebarUser {
+  @include transitions(background-color);
+  background-color: $color-milk-chocolate;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  padding: 10px;
+
+  &:hover {
+    background-color: $color-white;
+  }
+}
+
+.SidebarUserSelected {
+  @extend .SidebarUser;
+  align-items: center;
+  background-color: $color-white;
+  display: flex;
+  justify-content: space-between;
+}

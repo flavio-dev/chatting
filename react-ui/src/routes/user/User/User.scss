@@ -1,8 +1,20 @@
 @import "globals.scss";
 
+.UserLayout {
+  // this should be part of a different Component called BoardLayout which sole purpuse would
+  // have been to deal with the rendering of the SidebarContainer and UserContainer
+  display: flex;
+}
+
+.UserCol1 {
+  background-color: $color-milk-chocolate;
+  width: 30%;
+}
+
 .UserContent {
   @include default-wrapper-width();
   padding: 40px 0;
+  width: 70%;
 
   @media #{$medium-and-up} {
     padding: 60px 0;

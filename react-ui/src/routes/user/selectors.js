@@ -8,6 +8,11 @@ export const getUserId = createSelector(
   user => user.get('userId')
 )
 
+export const getUserSelected = createSelector(
+  [getUserReducers],
+  user => user.get('userSelected')
+)
+
 export const getUsersICanInteractWith = createSelector(
   [
     getUserId,
